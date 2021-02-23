@@ -12,5 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
+
+Route::get('/login','LoginController@index');
+Route::post('/login','LoginController@verify');
+
+
