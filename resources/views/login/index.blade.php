@@ -4,7 +4,7 @@
 	<title>Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/login/bootstrap/css/bootstrap.min.css">
@@ -14,13 +14,13 @@
 	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/login/animate/animate.css">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/login/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/login/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/login/select2/select2.min.css">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/login/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/loginutil.css">
@@ -28,7 +28,7 @@
 <!--===============================================================================================-->
 </head>
 <body>
-	
+
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-40 p-b-20">
@@ -36,7 +36,7 @@
                     @csrf
 					<span class="login100-form-title p-b-30">
 						<span style="color:#57b846;text-transform: uppercase;">
-                            
+
                             Welcome to<br>UMS
                         </span>
 					</span>
@@ -44,7 +44,7 @@
 						<img src="images/avatar-01.jpg" alt="AVATAR">
 					</span>
 
-                    <p class="errorMsg">{{session('msg')}}</p>
+                    <p class="errorMsg">Error{{session('msg')}}</p>
 
 					<div class="wrap-input100 validate-input m-t-30 m-b-35" data-validate = "Enter username">
 						<input class="input100" type="text" name="username">
@@ -62,15 +62,15 @@
 						</button>
 					</div>
 
-					
+
 				</form>
 			</div>
 		</div>
 	</div>
-	
+
 
 	<div id="dropDownSelect1"></div>
-	
+
 <!--===============================================================================================-->
 	<script src="vendor/login/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
