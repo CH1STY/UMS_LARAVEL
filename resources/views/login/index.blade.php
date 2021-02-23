@@ -45,7 +45,7 @@
 					</span>
 
 
-                    <p class="errorMsg">Error{{session('msg')}}</p>
+                    <p class="errorMsg">{{session('msg')}}</p>
 
 
 					<div class="wrap-input100 validate-input m-t-30 m-b-35" data-validate = "Enter username">
