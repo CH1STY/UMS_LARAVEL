@@ -20,6 +20,7 @@ class CreateUniversitiesTable extends Migration
             $table->mediumText('address');
             $table->string('admin_id',10);
             $table->foreign('admin_id')->references('admin_id')->on('admins');
+            $table->string('profile_pic',100)->nullable();
             $table->timestamps();
         });
     }

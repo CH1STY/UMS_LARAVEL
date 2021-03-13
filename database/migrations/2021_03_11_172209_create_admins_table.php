@@ -23,6 +23,7 @@ class CreateAdminsTable extends Migration
             $table->string('username',20)->unique();
             $table->string('name',50);
             $table->string('status',15);
+            $table->string('profile_pic',100)->nullable();
             $table->timestamps();
         });
     }

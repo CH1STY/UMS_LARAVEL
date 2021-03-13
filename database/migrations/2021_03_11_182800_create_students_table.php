@@ -34,6 +34,7 @@ class CreateStudentsTable extends Migration
             $table->foreign('university_id')->references('university_id')->on('universities');
             $table->string('department_id',10);
             $table->foreign('department_id')->references('department_id')->on('departments');
+            $table->string('profile_pic',100)->nullable();
             $table->timestamps();
         });
     }

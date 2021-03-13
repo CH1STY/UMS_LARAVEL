@@ -30,6 +30,7 @@ class CreateTeachersTable extends Migration
             $table->foreign('admin_id')->references('admin_id')->on('admins');
             $table->string('university_id',10);
             $table->foreign('university_id')->references('university_id')->on('universities');
+            $table->string('profile_pic',100)->nullable();
             $table->timestamps();
         });
     }
