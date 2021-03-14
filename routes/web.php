@@ -26,6 +26,17 @@ Route::middleware(['sessionVerify'])->group(function () {
     //------Start of Admin Part
     Route::get('admin','AdminController@index')->name('admin');
 
+    Route::get('create/admin','AdminController@createAdmin')->name('create.admin');
+    Route::post('create/admin','AdminController@createAdminVerify');
+
+    Route::get('create/account','AdminController@createAccount')->name('create.account');
+    Route::post('create/account','AdminController@createAccountVerify')->name('create.account');
+
+    Route::get('create/teacher','AdminController@createTeacher')->name('create.teacher');
+    Route::post('create/teacher','AdminController@createTeacherVerify');
+    
+    Route::get('create/student','AdminController@createStudent')->name('create.student');
+    Route::post('create/student','AdminController@createStudentVerify');
 
     //--------------------------------------------END OF ADMIN PART
     

@@ -7,3 +7,50 @@
     word-wrap: break-word;
     box-sizing: border-box;
 }
+
+.formTable
+{
+    table-layout:fixed; 
+    font-size:16px; 
+    width: 100%; 
+    margin:2%;
+    word-wrap: break-word;
+    box-sizing: border-box;
+}
+
+.labelT{
+    font-weight: bold;
+
+}
+
+.inputF{
+    width: 80%;
+    padding: 0px 5px;
+}
+
+.buttonDiv{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.errorText{
+    padding: 5px 0px;
+    font-size: 13px;
+    font-weight: bold;
+    color: red;
+}
+
+.successMsg{
+    color: rgb(60, 160, 60);
+    text-align: center;
+}
+
+
+.btnMargin{
+    margin-bottom: 10px;
+}
+
+.form-select{
+    width: 80%;
+}
