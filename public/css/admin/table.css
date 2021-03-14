@@ -1,0 +1,9 @@
+.tableCustom
+{
+    table-layout:fixed; 
+    font-size:13px; 
+    width: 100%; 
+    margin:2%;
+    word-wrap: break-word;
+    box-sizing: border-box;
+}

@@ -35,7 +35,7 @@
 				<form method="post" class="login100-form validate-form">
                     @csrf
 					<span class="login100-form-title p-b-30">
-						<span style="color:#57b846;text-transform: uppercase;">
+						<span style="color:#A1A5A6;text-transform: uppercase;">
 
                             Welcome to<br>UMS
                         </span>
