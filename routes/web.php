@@ -28,10 +28,14 @@ Route::middleware(['sessionVerify'])->group(function () {
 
 
     //--------------------------------------------END OF ADMIN PART
-    
+
     //------Start of Teacher Part
 
     Route::get('teacher','TeacherController@index')->name('teacher');
+    Route::get('teacher/profile','TeacherController@profile')->name('teacher.profile');
+    Route::post('teacher/profile','TeacherController@profilePicUP');
+    Route::get('teacher/profile/edit','TeacherController@edit')->name('teacher.edit');
+    Route::post('teacher/profile/edit','TeacherController@profileUpdate');
 
 
     //--------------------------------------------END OF TEACHER PART
@@ -39,12 +43,12 @@ Route::middleware(['sessionVerify'])->group(function () {
     //------Start of Accounts Part
 
     Route::get('account','AccountController@index')->name('account');
-    
+
     //--------------------------------------------End Of Accounts Part
-    
+
     //------Start of Student Part
 
-    Route::get('student','StudentController@index')->name('student'); 
+    Route::get('student','StudentController@index')->name('student');
 
     //--------------------------------------------End Of Student Part
 
