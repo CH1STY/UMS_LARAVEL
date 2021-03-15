@@ -38,6 +38,10 @@ Route::middleware(['sessionVerify'])->group(function () {
     Route::get('create/student','AdminController@createStudent')->name('create.student');
     Route::post('create/student','AdminController@createStudentVerify');
 
+    Route::get('admin/view/universityList','AdminModifyController@viewUniversity')->name('admin.view.university');
+    Route::get('admin/edit/university/{univ_id}','AdminModifyController@editUniversity')->name('admin.edit.university');
+    Route::post('admin/edit/university/{univ_id}','AdminModifyController@editUniversityVerify');
+
     //--------------------------------------------END OF ADMIN PART
     
     //------Start of Teacher Part

@@ -60,13 +60,12 @@ Admin Dashboard
                <td>{{$ad->address}}</td>
                <td>{{$ad->admin_id}}</td>
                <td>{{$ad->created_at}}</td>
-               
            </tr>
                
            @endforeach
         </tbody>
         <tfoot>
-            <tr><td style="text-align: center"  colspan="5"> <a href="">View|Edit Univeristy</a> </td></tr>
+            <tr><td style="text-align: center"  colspan="5"> <a href="{{route('admin.view.university')}}">View|Edit Univeristy</a> </td></tr>
         </tfoot>
     </table>
     <!-- admin table-------->
