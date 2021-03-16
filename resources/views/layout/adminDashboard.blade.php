@@ -59,13 +59,13 @@
         <li><a href="{{route('create.student')}}">Add Student</a></li>
       </ul>
     </li>
-    <li> <a href="">Registration</a></li>
-    <li class="dropdownList"> <a href="">Something <span>&rsaquo;</span></a>
+    <li class="dropdownList"> <a href="">Course Management <span>&rsaquo;</span></a>
       <ul>
-        <li><a href="">Open Nothing</a></li>
-        <li><a href="">Change NOthing</a></li>
+        <li><a href="">Add Subject</a></li>
+        <li><a href="">Add Course</a></li>
       </ul>
     </li>
+    <li> <a href="">Registration</a></li>
     <li> <a href="">Nothing</a></li>
     <li> <a href="">ATP Project</a></li>
   
