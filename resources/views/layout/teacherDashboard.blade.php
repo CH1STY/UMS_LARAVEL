@@ -18,7 +18,7 @@
   <!--Header Part -->
  <div class="headNav">
 
-    <span class="title">University Management System</span>
+    <span class="title" ><a href="{{route('teacher')}}" style="color:white">University Management System </a> </span>
      <ul>
       <div class="dropdown">
         <li><button onclick="notibarShow()" class="notiButton"><i class="fas fa-bell"><span id="notiNumber" class="badge">2</span></i> </button></li>
@@ -55,14 +55,14 @@
   <ul>
     <li class="dropdownList"> <a href="">Students <span>&rsaquo;</span></a>
       <ul>
-        <li><a href="">View Student List</a></li>
+        <li><a href="{{route('teacher.viewStudent')}}">View Student List</a></li>
         <li><a href="">Add Student</a></li>
       </ul>
     </li>
     <li class="dropdownList"> <a href="">Courses<span>&rsaquo;</span></a>
         <ul>
-          <li><a href="">View Course List</a></li>
-          <li><a href="">My Courses</a></li>
+          <li><a href="{{route('teacher.viewCourselist')}}">View Course List</a></li>
+          <li><a href="{{route('teacher.viewMyCourselist')}}">My Courses</a></li>
         </ul>
       </li>
     <li> <a href="">Accounts</a></li>

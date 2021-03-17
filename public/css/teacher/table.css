@@ -1,0 +1,105 @@
+.tableCustom
+{
+    table-layout:fixed;
+    font-size:13px;
+    width: 100%;
+    margin:2%;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    align-items: center;
+    align-content: center;
+}
+
+.formTable
+{
+    table-layout:fixed;
+    font-size:16px;
+    width: 100%;
+    margin:2%;
+    word-wrap: break-word;
+    box-sizing: border-box;
+}
+
+.labelT{
+    font-weight: bold;
+
+}
+
+.inputF{
+    width: 80%;
+    padding: 0px 5px;
+}
+
+.buttonDiv{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.a{
+    text-decoration: none !important;
+}
+
+.errorText{
+    padding: 5px 0px;
+    font-size: 13px;
+    font-weight: bold;
+    color: red;
+}
+
+.successMsg{
+    color: rgb(60, 160, 60);
+    text-align: center;
+}
+
+
+.btnMargin{
+    margin-bottom: 10px;
+}
+
+.form-select{
+    width: 80%;
+}
+
+.profilePic{
+    width: 100px;
+    height: 100px;
+    border: 5px solid grey;
+    border-radius: 50%;
+}
+
+td{
+
+    font-weight: bold;
+}
+th:hover{
+    background-color: white;
+    color: blue;
+}
+tr:hover {
+    background-color: #ffccdd;
+  }
+
+  .btn{
+      background-color: whitesmoke;
+      color: crimson;
+      font-weight: bold;
+      border: 2px solid crimson;
+    }
+    .btn:hover, .btn-info:focus, .btn-info:active{
+      background-color: crimson;
+      border: 2px solid crimson;
+      font-weight: bold;
+      color: white;
+
+    }
+    .btn-info:focus, .btn-info:active{
+        background-color: crimson;
+        border: 2px solid crimson;
+        font-weight: bold;
+        color: white;
+        box-shadow: 5px 10px crimson;
+        outline:crimson;
+      }
+
+
