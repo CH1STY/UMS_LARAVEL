@@ -3,7 +3,7 @@
 @section('pageTitle')
 
 Edit University
-    
+
 @endsection
 
 
@@ -12,16 +12,16 @@ Edit University
 
     @if ($admin->profile_pic)
     {{asset($admin->profile_pic)}}
-    @else 
+    @else
     {{asset('images/dummy.png')}}
     @endif
-    
+
 @endsection
 
 @section('username')
 
 {{$admin->name}}
-    
+
 @endsection
 
 @section('extraCss')
@@ -40,7 +40,7 @@ Edit University
          <tr>
             <td colspan="2"> <img class="profilePic" src=" @if ($university->profile_pic)
              {{asset($university->profile_pic)}}
-             @else 
+             @else
              {{asset('images/dummy.png')}}
              @endif" alt="">
              <input type="file" name="profile_pic" id="">
@@ -65,7 +65,7 @@ Edit University
              <td><input class="inputF" type="text" name="address" id="" value="{{$university->address}}" ></td>
              <td class="errorText">{{ $errors->first('address')}}</td>
             </tr>
-            
+
             <tr>
                <td class="labelT">Creation Date:</td>
                <td colspan="2">{{date('l jS \of F Y h:i:s A', strtotime($university->created_at))}}</td>
@@ -74,6 +74,6 @@ Edit University
 
     <div class="buttonDiv">
         <button class="btn btn-primary" type="submit">Update</button>
-    </div> 
+    </div>
  </form>
-@endsection 
+@endsection

@@ -34,7 +34,7 @@ Route::middleware(['sessionVerify'])->group(function () {
 
     Route::get('create/teacher','AdminController@createTeacher')->name('create.teacher');
     Route::post('create/teacher','AdminController@createTeacherVerify');
-    
+
     Route::get('create/student','AdminController@createStudent')->name('create.student');
     Route::post('create/student','AdminController@createStudentVerify');
 
@@ -51,6 +51,12 @@ Route::middleware(['sessionVerify'])->group(function () {
     Route::post('teacher/profile','TeacherController@profilePicUP');
     Route::get('teacher/profile/edit','TeacherController@edit')->name('teacher.edit');
     Route::post('teacher/profile/edit','TeacherController@profileUpdate');
+    Route::get('teacher/student','TeacherController@viewStudent')->name('teacher.viewStudent');
+
+    Route::get('teacher/course','CourseController@teacherCourselist')->name('teacher.viewCourselist');
+    Route::get('teacher/mycourse','CourseController@teacherCourse')->name('teacher.viewMyCourselist');
+    Route::post('teacher/course/details/{course_id}','CourseController@courseDetails')->name('teacher.courseDetails');
+
 
 
     //--------------------------------------------END OF TEACHER PART
