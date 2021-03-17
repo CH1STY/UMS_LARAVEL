@@ -29,7 +29,7 @@ class TeacherProfileRequest extends FormRequest
             'email' => 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix
             |max:50|min:10',
             'phone' => 'min:11|max:15',
-            "profile_picture" => 'required|mimes:jpg,png|max:5000',
+            "profile_picture" => 'mimes:jpg,png|max:5000',
         ];
     }
 }
