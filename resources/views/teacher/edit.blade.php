@@ -33,6 +33,7 @@ Edit Profile
     {{--<h1>This is the Main Body</h1>--}}
     <h2 align="center" style="padding:2%">EDIT YOUR PROFILE <span style="color:#D50000"><b>{{$teacher->username}}</b></span></h2>
     {{--<h6 align="center" style="color:red">{{$errors->first('profile_picture')}}</h6>--}}
+    <p style="color:red">{{session('msg')}} </p>
     @foreach ($errors->all() as $err)
                 <p style="color:red">{{$err}}</p>
             @endforeach
@@ -70,16 +71,11 @@ Edit Profile
             </tr>
             <tr>
                 <th scope="col">BIRTH DATE</th>
-                <td><input type="date" name="birthdate" value="{{$teacher['birthdate']}}"></td>
+                <td>{{date('l jS \of F Y', strtotime($teacher['birthdate']))}}</td>
             </tr>
             <tr>
                 <th scope="col">STATUS</th>
-                <th scope="col">
-                    <select name="status" id="">
-                        <option value="{{$teacher['status']}}" @if ($teacher['status']=='Completed') selected @endif>Completed</option>
-                        <option value="{{$teacher['status']}}" @if ($teacher['status']=='In progress') selected @endif>In progress</option>
-                    </select>
-                </th>
+                <th scope="col">{{$teacher['status']}}</th>
             </tr>
             <tr>
                 <th scope="col">ADDRESS</th>
@@ -91,7 +87,6 @@ Edit Profile
             </tr>
         </table>
         </form>
-        {{session('msg')}}
     </div>
 
 @endsection

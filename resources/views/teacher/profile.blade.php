@@ -32,9 +32,8 @@ Profile Page
 @section('container')
     {{--<h1>This is the Main Body</h1>--}}
     <h2 align="center" style="padding:2%">Welcome <span style="color:#D50000"><b>{{$teacher->username}}</b></span></h2>
-    <h6 align="center" style="color:red">{{$errors->first('profile_picture')}}</h6>
     @foreach ($errors->all() as $err)
-                <p style="color:red">{{$err}}</p>
+                <p style="color:red" align="center">{{$err}}</p>
             @endforeach
     <div align="center">
         <br>
@@ -76,7 +75,7 @@ Profile Page
             </tr>
             <tr>
                 <th scope="col">BIRTH DATE</th>
-                <td>{{$teacher['birthdate']}}</td>
+                <td>{{date('l jS \of F Y', strtotime($teacher['birthdate']))}}</td>
             </tr>
             <tr>
                 <th scope="col">STATUS</th>
