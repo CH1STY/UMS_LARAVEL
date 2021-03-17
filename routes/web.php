@@ -26,6 +26,11 @@ Route::middleware(['sessionVerify'])->group(function () {
     //------Start of Admin Part
     Route::get('admin','AdminController@index')->name('admin');
 
+
+    
+    Route::get('admin/profile','AdminController@profile')->name('admin.profile');
+    Route::post('admin/profile','AdminController@profileVerify');
+
     Route::get('create/admin','AdminController@createAdmin')->name('create.admin');
     Route::post('create/admin','AdminController@createAdminVerify');
 
@@ -60,6 +65,17 @@ Route::middleware(['sessionVerify'])->group(function () {
     Route::get('admin/edit/student/{s_id}','AdminModifyController@editStudent')->name('admin.edit.student');
     Route::post('admin/edit/student/{s_id}','AdminModifyController@editStudentVerify');
     Route::get('admin/details/student/{s_id}','AdminModifyController@detailsStudent')->name('admin.details.student');
+    
+    Route::get('admin/notice/add','AdminNoticeController@addNotice')->name('admin.notice.add');
+    Route::post('admin/notice/add','AdminNoticeController@addNoticeVerify');
+    Route::get('admin/notice/viewList','AdminNoticeController@viewNotices')->name('admin.notice.view');
+    Route::get('admin/notice/delete/{notice_id}','AdminNoticeController@delete')->name('admin.notice.delete');
+
+    Route::get('admin/subject/add','AdminCourseController@addSubject')->name('admin.subject.add');
+    Route::post('admin/subject/add','AdminCourseController@addSubjectVerify');
+
+
+
 
     //--------------------------------------------END OF ADMIN PART
 

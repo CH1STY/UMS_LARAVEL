@@ -32,6 +32,47 @@ class AdminController extends Controller
         return view('admin.admin',compact(['admin', 'adminList','accountList','teacherList','universityList','studentList']));
     }
 
+    public function profile(Request $request)
+    {
+        $admin = Admin::where('username',$request->session()->get('username'))
+                ->first();
+        $ad = $admin;
+        return view('admin.admin.profile',compact('admin','ad'));
+    }
+    public function profileVerify(Request $request)
+    {       
+        $request->validate([
+            'profile_pic' => 'required|mimes:jpg,png|max:5000',
+        ]);
+
+        $admin = Admin::where('username',$request->session()->get('username'))
+                ->first();
+        if($request->profile_pic)
+            {
+                $profile_picExtension = $request->file('profile_pic')->extension();
+                $destination = 'images/admin';
+                $fileName = $admin->admin_id.date('U').".".$profile_picExtension;
+                $request->profile_pic->move($destination,$fileName);
+                
+                if($admin->profile_pic)
+                {
+                    unlink($admin->profile_pic);
+                }
+                $admin->profile_pic = $destination."/".$fileName;
+            }
+        if($admin->save())
+        {
+            $request->session()->flash('msg',"Admin Picture Updated");
+
+        }
+        else
+        {
+            $request->session()->flash('msg',"Admin Picture Update Failed");
+                
+        }
+        return Back();
+    }
+
     public function createAdmin(Request $request)
     {
         $admin = Admin::where('username',$request->session()->get('username'))
