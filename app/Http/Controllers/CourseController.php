@@ -28,7 +28,7 @@ class CourseController extends Controller
        // print_r($list[0]);*/
 
 
-        //print_r($course[0]);
+
         $course = DB::table('courses','departments')
                     ->join('departments', 'departments.department_id','=','courses.department_id')
                     ->SELECT ('courses.course_id', 'departments.name as dname', 'courses.subject_code',
@@ -58,13 +58,13 @@ class CourseController extends Controller
             }
             else
             {
-                $course ->paginate(10);
+                $course = $course->paginate(10);
             }
 
         }
         else
         {
-            $course ->paginate(10);
+            $course = $course->paginate(10);
         }
 
         return view('teacher.viewCourselist',compact('course','teacher','sortType'));
@@ -76,7 +76,7 @@ class CourseController extends Controller
                             ->first();
         $teacherCourse = TeacherCourse::where('teacher_id',$teacher->teacher_id)
                                         ->paginate(10);
-        $course = Course::paginate(10);
+
         /*$course = DB::table('courses')
                     ->join('teacher_courses', 'teacher_courses.course_id','=','courses.course_id')
                     ->SELECT ('courses.course_id', 'courses.subject_code',
@@ -109,7 +109,7 @@ class CourseController extends Controller
                     }
 
              }
-
+             $course = Course::paginate(10);
         return view('teacher.viewMyCourselist',compact('course','teacher','sortType','teacherCourse'));
     }
 
