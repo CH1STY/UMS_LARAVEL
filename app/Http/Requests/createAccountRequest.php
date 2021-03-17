@@ -33,7 +33,7 @@ class createAccountRequest extends FormRequest
             'phone' => 'required|numeric|digits_between:11,15|unique:admins,phone|unique:accounts,phone|
                             unique:teachers,phone|unique:students,phone',
             'password' => 'required|confirmed|min:6|max:30',
-            'address' => 'required|regex:/(^[-0-9A-Za-z.,\/ ]+$)/|max:50',
+            'address' => 'required|regex:/(^[-0-9A-Za-z.,\/ ]+$)/|max:50', 
             'salary' => 'required|numeric|min:0|max:100000',
             'university_id' => 'required|exists:universities,university_id',
             'birthdate' => 'required|date|before:2002/01/01',

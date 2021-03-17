@@ -98,7 +98,7 @@ Admin Dashboard
            @endforeach
         </tbody>
         <tfoot>
-            <tr><td style="text-align: center"  colspan="5"> <a href="">View Full Admin List</a> </td></tr>
+            <tr><td style="text-align: center"  colspan="5"> <a href="{{route('admin.view.admin')}}">View Full Admin List</a> </td></tr>
         </tfoot>
     </table>
     <!-- accounts table-------->
@@ -131,7 +131,7 @@ Admin Dashboard
            @endforeach
         </tbody>
         <tfoot>
-            <tr><td style="text-align: center"  colspan="5"> <a href="">View|Edit Full Account List</a> </td></tr>
+            <tr><td style="text-align: center"  colspan="5"> <a href="{{route('admin.view.account')}}">View|Edit Full Account List</a> </td></tr>
         </tfoot>
     </table>
     
@@ -163,7 +163,7 @@ Admin Dashboard
            @endforeach
         </tbody>
         <tfoot>
-            <tr><td style="text-align: center"  colspan="5"> <a href="">View|Edit Full Account List</a> </td></tr>
+            <tr><td style="text-align: center"  colspan="5"> <a href="{{route('admin.view.teacher')}}">View|Edit Full Teacher List</a> </td></tr>
         </tfoot>
     </table>
     
@@ -195,7 +195,7 @@ Admin Dashboard
            @endforeach
         </tbody>
         <tfoot>
-            <tr><td style="text-align: center"  colspan="5"> <a href="">View|Edit Full Students List</a> </td></tr>
+            <tr><td style="text-align: center"  colspan="5"> <a href="{{route('admin.view.student')}}">View|Edit Full Students List</a> </td></tr>
         </tfoot>
     </table>
 </div>
