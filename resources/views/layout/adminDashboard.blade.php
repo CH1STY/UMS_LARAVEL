@@ -63,7 +63,8 @@
     <li class="dropdownList"> <a href="">Course Management <span>&rsaquo;</span></a>
       <ul>
         <li><a href="{{route('admin.subject.add')}}">Add Subject</a></li>
-        <li><a href="">Add Course</a></li>
+        <li><a href="{{route('admin.course.add')}}">Add Course</a></li>
+        <li><a href="{{route('admin.course.view')}}">View Courses and Subjects</a></li>
       </ul>
     </li>
     <li class="dropdownList"> <a href="">Notice <span>&rsaquo;</span></a>

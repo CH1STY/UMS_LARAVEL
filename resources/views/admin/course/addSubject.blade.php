@@ -39,8 +39,8 @@ Subject Adding
     <table class="table formTable">
         <tr>
             <th>Name</th>
-            <td><input type="text" name="name" id=""></td>
-            <td class="errorMsg">{{$errors->first('name')}}</td>
+            <td><input type="text" name="name" id="" value="{{old('name')}}"></td>
+            <td class="errorText">{{$errors->first('name')}}</td>
         </tr>
         <tr>
             <td>University</td>
@@ -48,9 +48,10 @@ Subject Adding
                 <select class ="form select" name="university_id" id="">
                     <option value="">Please Select an University</option>
                     @foreach ($universityList as $university)
-                    <option value="{{$university->university_id}}">{{$university->name}}</option>
+                    <option value="{{$university->university_id}}"   @if(old('university_id')==$university->university_id) selected @endif>{{$university->name}}</option>
                     @endforeach
                 </select>
+                <td class="errorText">{{$errors->first('university_id')}}</td>
             </td>
         </tr>
         <tr>
@@ -59,10 +60,11 @@ Subject Adding
                 <select class ="form select" name="department_id" id="">
                     <option value="">Please Select a Department</option>
                     @foreach ($departmentList as $department)
-                    <option value="{{$department->department_id}}">{{$department->name}}</option>
+                    <option value="{{$department->department_id}}" @if(old('department_id')==$department->department_id) selected @endif >{{$department->name}}</option>
                     @endforeach
                 </select>
             </td>
+            <td class="errorText">{{$errors->first('department_id')}}</td>
         </tr>
     </table>
     <div class="buttonDiv">

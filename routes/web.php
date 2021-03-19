@@ -73,7 +73,10 @@ Route::middleware(['sessionVerify'])->group(function () {
 
     Route::get('admin/subject/add','AdminCourseController@addSubject')->name('admin.subject.add');
     Route::post('admin/subject/add','AdminCourseController@addSubjectVerify');
-
+    
+    Route::get('admin/course/add','AdminCourseController@addCourse')->name('admin.course.add');
+    Route::post('admin/course/add','AdminCourseController@addCourseVerify');
+    Route::get('admin/course/subjects/view','AdminCourseController@viewCourseAndSubject')->name('admin.course.view');
 
 
 
