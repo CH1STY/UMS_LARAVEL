@@ -22,6 +22,8 @@ Route::get('logout', 'LogoutController@logout')->name('logout');
 
 Route::get('check','Check@index');
 
+Route::get('/registration','RegistrationController@index')->name('registration');
+
 Route::middleware(['sessionVerify'])->group(function () {
     //------Start of Admin Part
     Route::get('admin','AdminController@index')->name('admin');
