@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="{{asset('favicon.ico')}}" type="image/x-icon">
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
   <link rel="stylesheet" href="{{asset('css/admin/style.css')}}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
@@ -35,7 +36,7 @@
           <a align="center" style="text-align:center;color:rgb(83, 83, 201)" href="">Show All</a>
         </div>
       </div>
-       <li><a href=""><i class="fas fa-user"></i> Profile</a></li>
+       <li><a href="{{route('admin.profile')}}"><i class="fas fa-user"></i> Profile</a></li>
        <li><a href=""><i class="fas fa-cog"></i>Setting</a></li>
        <li><a href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
     </ul>
@@ -61,8 +62,15 @@
     </li>
     <li class="dropdownList"> <a href="">Course Management <span>&rsaquo;</span></a>
       <ul>
-        <li><a href="">Add Subject</a></li>
-        <li><a href="">Add Course</a></li>
+        <li><a href="{{route('admin.subject.add')}}">Add Subject</a></li>
+        <li><a href="{{route('admin.course.add')}}">Add Course</a></li>
+        <li><a href="{{route('admin.course.view')}}">View Courses and Subjects</a></li>
+      </ul>
+    </li>
+    <li class="dropdownList"> <a href="">Notice <span>&rsaquo;</span></a>
+      <ul>
+        <li><a href="{{route('admin.notice.add')}}">Add Notice</a></li>
+        <li><a href="{{route('admin.notice.view')}}">View All Notices</a></li>
       </ul>
     </li>
     <li> <a href="">Registration</a></li>

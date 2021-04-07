@@ -48,13 +48,51 @@
                     <p class="errorMsg">{{session('msg')}}</p>
 
 
-					<div class="wrap-input100 validate-input m-t-30 m-b-35" data-validate = "Enter username">
+					<div class="wrap-input100 validate-input m-t-30 m-b-35" data-validate = "Enter name">
+						<input class="input100" type="text" name="name">
+						<span class="focus-input100" data-placeholder="Name"></span>
+					</div>
+
+                    <div class="wrap-input100 validate-input m-t-30 m-b-35" data-validate = "Enter username">
 						<input class="input100" type="text" name="username">
 						<span class="focus-input100" data-placeholder="Username"></span>
 					</div>
 
+                    <div class="wrap-input100 validate-input m-t-30 m-b-35" data-validate = "Enter phone">
+						<input class="input100" type="text" name="phone">
+						<span class="focus-input100" data-placeholder="Phone No"></span>
+					</div>
+
+                    <div class="wrap-input100 validate-input m-t-30 m-b-35" data-validate = "Enter email">
+						<input class="input100" type="text" name="email">
+						<span class="focus-input100" data-placeholder="Email"></span>
+					</div>
+
 					<div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
-						<input class="input100" type="password" name="pass">
+						<input class="input100" type="password" name="password">
+						<span class="focus-input100" data-placeholder="Password"></span>
+					</div>
+
+                    <div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
+						<input class="input100" type="password" name="password_confirmation">
+						<span class="focus-input100" data-placeholder="Confirm Password"></span>
+					</div>
+
+                    <div class="wrap-input100 validate-input m-b-50" data-validate="Enter address">
+						<input class="input100" type="password" name="address">
+						<span class="focus-input100" data-placeholder="Address"></span>
+					</div>
+
+                    <div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
+                        <tr>
+                        <td>DOB<td>
+						<td><input class="input100" type="date" name="pass"></td>
+						<span class="focus-input100" data-placeholder=""></span>
+                        </tr>
+					</div>
+
+                    <div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
+						<input class="input100" type="date" name="pass">
 						<span class="focus-input100" data-placeholder="Password"></span>
 					</div>
 
