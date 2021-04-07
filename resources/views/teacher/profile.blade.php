@@ -44,13 +44,7 @@ Profile Page
                     @else
                     {{asset('images/dummy.png')}}
                     @endif" alt="" class="propic">
-                    <div style="vertical-align: bottom;" >
-                        <form method="POST" action="" enctype= "multipart/form-data">
-                            @csrf
-                            <input type="file" name="profile_picture" id="">
-                            <button type="submit" class="btn btn-info">Upload</button>
-                        </form>
-                    </div>
+
                 </td>
             </tr>
             <tr style="font-size:20px;">
@@ -91,7 +85,7 @@ Profile Page
             </tr>
             <tr>
                 <td></td>
-				<td><a href="{{route('teacher')}}">
+				<td><a href="{{url()->previous()}}">
                     <button class="btn btn-success" style="margin:5px">BACK</button></a>
                     <a href="{{route('teacher.edit')}}">
 				<button type="submit" name="submit" class="btn btn-success" style="margin:5px">EDIT</button></td></a>

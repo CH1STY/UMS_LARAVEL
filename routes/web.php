@@ -42,7 +42,7 @@ Route::middleware(['sessionVerify'])->group(function () {
     Route::get('admin/edit/university/{univ_id}','AdminModifyController@editUniversity')->name('admin.edit.university');
     Route::get('admin/details/university/{univ_id}','AdminModifyController@detailsUniversity')->name('admin.details.university');
     Route::post('admin/edit/university/{univ_id}','AdminModifyController@editUniversityVerify');
-    
+
     Route::get('admin/view/adminList','AdminModifyController@viewAdmin')->name('admin.view.admin');
     Route::get('admin/details/admin/{ad_id}','AdminModifyController@detailsAdmin')->name('admin.details.admin');
 
@@ -50,7 +50,7 @@ Route::middleware(['sessionVerify'])->group(function () {
     Route::get('admin/edit/account/{ac_id}','AdminModifyController@editAccount')->name('admin.edit.account');
     Route::post('admin/edit/account/{ac_id}','AdminModifyController@editAccountVerify');
     Route::get('admin/details/account/{ac_id}','AdminModifyController@detailsAccount')->name('admin.details.account');
-    
+
     Route::get('admin/view/teacherList','AdminModifyController@viewTeacher')->name('admin.view.teacher');
     Route::get('admin/edit/teacher/{t_id}','AdminModifyController@editTeacher')->name('admin.edit.teacher');
     Route::post('admin/edit/teacher/{t_id}','AdminModifyController@editTeacherVerify');
@@ -66,17 +66,39 @@ Route::middleware(['sessionVerify'])->group(function () {
     //------Start of Teacher Part
 
     Route::get('teacher','TeacherController@index')->name('teacher');
-    Route::get('teacher/profile','TeacherController@profile')->name('teacher.profile');
-    Route::post('teacher/profile','TeacherController@profilePicUP');
-    Route::get('teacher/profile/edit','TeacherController@edit')->name('teacher.edit');
-    Route::post('teacher/profile/edit','TeacherController@profileUpdate');
-    Route::get('teacher/student','TeacherController@viewStudent')->name('teacher.viewStudent');
 
-    Route::get('teacher/course','CourseController@teacherCourselist')->name('teacher.viewCourselist');
-    Route::get('teacher/mycourse','CourseController@teacherCourse')->name('teacher.viewMyCourselist');
-    Route::post('teacher/course/details/{course_id}','CourseController@courseDetails')->name('teacher.courseDetails');
+    Route::middleware(['teachercheck'])->group(function () {
 
+        //Profile
+        Route::get('teacher/profile','TeacherController@profile')->name('teacher.profile');
+        Route::get('teacher/profile/edit','TeacherController@edit')->name('teacher.edit');
+        Route::post('teacher/profile/edit','TeacherController@profileUpdate');
 
+        //Teacher Student
+        Route::get('teacher/student','TeacherStudentController@viewStudent')->name('teacher.viewStudent');
+        Route::get('teacher/{id}/studentlist','TeacherStudentController@studentlist')->name('teacher.studentlist');
+        Route::get('teacher/studentdetails/{id}','TeacherStudentController@studentdetails')->name('teacher.studentdetails');
+        Route::get('teacher/student/drop/{id}','TeacherStudentController@studentdrop')->name('teacher.studentdrop');
+
+        //Teacher Course
+        Route::get('teacher/course','CourseController@teacherCourselist')->name('teacher.viewCourselist');
+
+        //Search Course
+        Route::get('/home/searchCourse', 'CourseController@searchCourse')->name('teacher.searchCourse');
+        Route::get('/home/action', 'CourseController@action')->name('teacher.action');
+
+        Route::get('teacher/mycourse','CourseController@teacherCourse')->name('teacher.viewMyCourselist');
+
+        Route::get('teacher/course/details/{course_id}','CourseController@courseDetails')->name('teacher.courseDetails');
+
+        //Teacher Note
+        Route::get('teacher/notes','CourseController@noteCourse')->name('teacher.noteCourse');
+        Route::get('teacher/notes/upload/{id}','CourseController@noteUpload')->name('teacher.noteUpload');
+
+        //Teacher Accounts
+        Route::get('teacher/viewAccount','TeacherAccountController@viewAccount')->name('teacher.viewAccount');
+
+    });
 
     //--------------------------------------------END OF TEACHER PART
 

@@ -25,14 +25,15 @@ Teacher Home
 
 @section('container')
     {{--<h1>This is the Main Body</h1>--}}
-    <h2 align="center" style="padding:2%">Welcome <span style="color:#D50000"><b>{{$teacher->username}}
-    </b></span> It is view student page</h2>
+    {{session('delete')}}
+    <h2 align="center" style="padding:2%">STUDENT LIST </h2>
     <table class="table tableCustom" align="center">
         <thead>
             <tr>
                 <th>STUDENT ID</th>
-                <th>COURSE ID</th>
-                <th>STATUS</th>
+                <th>STUDENT NAME</th>
+                <th>CREDITS COMPLETED</th>
+                <th>STUDENT STATUS</th>
                 <th>ACTION</th>
             </tr>
         </thead>
@@ -40,10 +41,11 @@ Teacher Home
             @foreach ($student as $list)
             <tr>
                 <td>{{$list->student_id}}</td>
-                <td>{{$list->course_id}}</td>
+                <td>{{$list->name}}</td>
+                <td>{{$list->credits_completed}}</td>
                 <td>{{$list->status}}</td>
-                <td><a href="{{route('teacher.studentdetails',['id'=>$list->student_id])}}">
-                    <button class="btn btn-primary">Details</button></a></td>
+                <td><a href="{{route('teacher.studentdetails',['id'=>$list->student_id])}}"><button class="btn btn-primary">Details</button></a>
+                    <a href="{{route('teacher.studentdrop',['id'=>$list->student_id])}}"><button class="btn btn-danger">Drop</button></a></td>
             </tr>
 
             @endforeach
