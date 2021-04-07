@@ -151,13 +151,15 @@ class AdminCourseController extends Controller
         $courseList = Course::join('subjects','courses.subject_code','=','subjects.subject_code')
                         ->join('departments','subjects.department_id','=','departments.department_id')
                         ->join('universities','departments.university_id','=','universities.university_id')
-                        ->select('courses.name as cname','departments.name as cdname','universities.name as cuname','subjects.name as csname','courses.semester as csemester')
-                        ->get();
-
+                        ->select('courses.name as cname','departments.name as cdname','universities.name as cuname','subjects.name as csname','courses.semester as csemester');
+                        
         if($request->sortType)
         {
             $sortType = $request->sortType;
         }
+
+        $courseList = $courseList->paginate(3)
+                                    ->appends(['sortTab'=> $request->sortTab,'sort'=>$request->sort, 'sortType' => $request->sortType ]);
 
        return view('admin.course.CourseAndSubject',compact('admin','sortType','courseList'));
 
