@@ -55,7 +55,7 @@ Teacher Home
                       <div class="card-body">
                         <h3 class="card-title" style="color:crimson">{{$c['name']}}</h3>
                         <p class="card-text">You will get to know about course details and students of this current course.</p>
-                        <a href="#" class="btn btn-primary">Go to course</a>
+                        <a href="{{route('teacher.courseDetails',['course_id'=>$tc->course_id,])}}" class="btn btn-primary">Go to course</a>
                       </div>
                     </div>
                 </div>

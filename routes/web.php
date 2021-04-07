@@ -90,17 +90,39 @@ Route::middleware(['sessionVerify'])->group(function () {
     //------Start of Teacher Part
 
     Route::get('teacher','TeacherController@index')->name('teacher');
-    Route::get('teacher/profile','TeacherController@profile')->name('teacher.profile');
-    Route::post('teacher/profile','TeacherController@profilePicUP');
-    Route::get('teacher/profile/edit','TeacherController@edit')->name('teacher.edit');
-    Route::post('teacher/profile/edit','TeacherController@profileUpdate');
-    Route::get('teacher/student','TeacherController@viewStudent')->name('teacher.viewStudent');
 
-    Route::get('teacher/course','CourseController@teacherCourselist')->name('teacher.viewCourselist');
-    Route::get('teacher/mycourse','CourseController@teacherCourse')->name('teacher.viewMyCourselist');
-    Route::post('teacher/course/details/{course_id}','CourseController@courseDetails')->name('teacher.courseDetails');
+    Route::middleware(['teachercheck'])->group(function () {
 
+        //Profile
+        Route::get('teacher/profile','TeacherController@profile')->name('teacher.profile');
+        Route::get('teacher/profile/edit','TeacherController@edit')->name('teacher.edit');
+        Route::post('teacher/profile/edit','TeacherController@profileUpdate');
 
+        //Teacher Student
+        Route::get('teacher/student','TeacherStudentController@viewStudent')->name('teacher.viewStudent');
+        Route::get('teacher/{id}/studentlist','TeacherStudentController@studentlist')->name('teacher.studentlist');
+        Route::get('teacher/studentdetails/{id}','TeacherStudentController@studentdetails')->name('teacher.studentdetails');
+        Route::get('teacher/student/drop/{id}','TeacherStudentController@studentdrop')->name('teacher.studentdrop');
+
+        //Teacher Course
+        Route::get('teacher/course','CourseController@teacherCourselist')->name('teacher.viewCourselist');
+
+        //Search Course
+        Route::get('/home/searchCourse', 'CourseController@searchCourse')->name('teacher.searchCourse');
+        Route::get('/home/action', 'CourseController@action')->name('teacher.action');
+
+        Route::get('teacher/mycourse','CourseController@teacherCourse')->name('teacher.viewMyCourselist');
+
+        Route::get('teacher/course/details/{course_id}','CourseController@courseDetails')->name('teacher.courseDetails');
+
+        //Teacher Note
+        Route::get('teacher/notes','CourseController@noteCourse')->name('teacher.noteCourse');
+        Route::get('teacher/notes/upload/{id}','CourseController@noteUpload')->name('teacher.noteUpload');
+
+        //Teacher Accounts
+        Route::get('teacher/viewAccount','TeacherAccountController@viewAccount')->name('teacher.viewAccount');
+
+    });
 
     //--------------------------------------------END OF TEACHER PART
 

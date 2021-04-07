@@ -25,7 +25,7 @@ Teacher Home
 @endsection
 
 @section('container')
-    {{--<h1>This is the Main Body</h1>--}}
+
     <h2 align="center" style="padding:2%">ALL COURSE LIST</h2>
 
     <table class="table tableCustom" align="center">
@@ -36,7 +36,6 @@ Teacher Home
                 else
                 {$sortType='asc';}
                 @endphp
-
                 <th><a href="{{route('teacher.viewCourselist',['sort'=>'course_id','sortType'=>$sortType,])}}">COURSE ID @if(request('sort')=='course_id') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
                 <th><a href="{{route('teacher.viewCourselist',['sort'=>'name','sortType'=>$sortType,])}}">COURSE NAME @if(request('sort')=='name') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
                 <th><a href="{{route('teacher.viewCourselist',['sort'=>'credits','sortType'=>$sortType,])}}">COURSE CREDIT @if(request('sort')=='credits') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
@@ -53,7 +52,7 @@ Teacher Home
                 <td>{{$list->credits}}</td>
                 <td>{{$list->dname}}</td>
                 <td>{{$list->created_at}}</td>
-                <td><button class="btn">Details</button></td>
+                <td><a href="#"><button class="btn">Details</button></td>
             </tr>
 
             @endforeach
@@ -61,3 +60,4 @@ Teacher Home
     </table>
     <div style="display:flex;justify-content:center;" >{{$course->links()}}</div>
 @endsection
+
