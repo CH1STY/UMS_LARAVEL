@@ -158,6 +158,8 @@ class AdminCourseController extends Controller
             $sortType = $request->sortType;
         }
 
+        
+
         $courseList = $courseList->paginate(3)
                                     ->appends(['sortTab'=> $request->sortTab,'sort'=>$request->sort, 'sortType' => $request->sortType ]);
 

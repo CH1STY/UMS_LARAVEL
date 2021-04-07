@@ -43,8 +43,8 @@ else
 @endphp
 
 <div class="tab">
-    <button id="subjectTab" class="tablinks" onclick="openCourse(event, 'Subject')">Subject</button>
-    <button id="courseTab" class="tablinks" onclick="openCourse(event, 'Course')">Course</button>
+    <a href="{{route('admin.course.view',['sortTab'=>'subject'])}}"><button id="subjectTab" class="tablinks" onclick="openCourse(event, 'Subject')">Subject</button></a>
+    <a href="{{route('admin.course.view',['sortTab'=>'course'])}}"><button id="courseTab" class="tablinks" onclick="openCourse(event, 'Course')">Course</button></a>
     
   </div>
   
