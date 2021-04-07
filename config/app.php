@@ -166,7 +166,7 @@ return [
          * Package Service Providers...
          */
 
-         kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
+
         /*
          * Application Service Providers...
          */

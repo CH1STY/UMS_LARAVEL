@@ -32,17 +32,17 @@ Teacher Home
         <thead>
             <tr>
                 @php
-                if($order=='asc') {$sortType='desc';}
+                if($order=='asc') {$order='desc';}
                 else
                 {$order='asc';}
                 @endphp
 
-                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'course_id','order'=>$sortType,])}}">COURSE ID @if(request('sort')=='course_id') @if(request('order')=='asc') &uarr;  @else &darr; @endif  @endif</a></th>
-                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'name','order'=>$sortType,])}}">COURSE NAME @if(request('sort')=='name') @if(request('order')=='asc') &uarr;  @else &darr; @endif  @endif</a></th>
-                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'credits','order'=>$sortType,])}}">COURSE CREDIT @if(request('sort')=='credits') @if(request('order')=='asc') &uarr;  @else &darr; @endif  @endif</a></th>
-                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'dname','order'=>$sortType,])}}">DEPARTMENT NAME @if(request('sort')=='dname') @if(request('order')=='asc') &uarr;  @else &darr; @endif  @endif</a></th>
-                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'created_at','order'=>$sortType,])}}">CREATED AT @if(request('sort')=='created_at') @if(request('order')=='asc') &uarr;  @else &darr; @endif  @endif</a></th>
-                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'status','order''=>$sortType,])}}">STATUS @if(request('sort')=='status') @if(request('order')=='asc') &uarr;  @else  &darr; @endif  @endif</a></th>
+                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'course_id','order'=>$order,])}}">COURSE ID @if(request('sort')=='course_id') @if(request('order')=='asc') &uarr;  @else &darr; @endif  @endif</a></th>
+                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'name','order'=>$order,])}}">COURSE NAME @if(request('sort')=='name') @if(request('order')=='asc') &uarr;  @else &darr; @endif  @endif</a></th>
+                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'credits','order'=>$order,])}}">COURSE CREDIT @if(request('sort')=='credits') @if(request('order')=='asc') &uarr;  @else &darr; @endif  @endif</a></th>
+                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'dname','order'=>$order,])}}">DEPARTMENT NAME @if(request('sort')=='dname') @if(request('order')=='asc') &uarr;  @else &darr; @endif  @endif</a></th>
+                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'created_at','order'=>$order,])}}">CREATED AT @if(request('sort')=='created_at') @if(request('order')=='asc') &uarr;  @else &darr; @endif  @endif</a></th>
+                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'status','order'=>$order,])}}">STATUS @if(request('sort')=='status') @if(request('order')=='asc') &uarr;  @else  &darr; @endif  @endif</a></th>
                 <th>ACTION</th>
             </tr>
         </thead>
