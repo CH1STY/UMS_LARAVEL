@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
   <link rel="stylesheet" href="{{asset('css/teacher/style.css')}}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   @yield('extraCss')
   <title>@yield('pageTitle')</title>
 </head>
@@ -62,7 +64,8 @@
     </li>
     <li class="dropdownList"> <a href="">Courses<span>&rsaquo;</span></a>
         <ul>
-          <li><a href="{{route('teacher.searchCourse')}}">View Course List</a></li>
+          <li><a href="{{route('teacher.searchCourse')}}">Search Course</a></li>
+          <li><a href="{{route('teacher.viewCourselist')}}">View Course List</a></li>
           <li><a href="{{route('teacher.viewMyCourselist')}}">My Courses</a></li>
         </ul>
       </li>

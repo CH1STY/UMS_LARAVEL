@@ -7,6 +7,7 @@ Teacher Home
 @section('extraCss')
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 @endsection
 
 @section('profilePicSource')
@@ -73,7 +74,6 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
        {
         $('tbody').html(data.table_data);
         $('#total_records').text(data.total_data);
-
        }
       })
      }
@@ -85,4 +85,5 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
 
     });
     </script>
+
 @endsection

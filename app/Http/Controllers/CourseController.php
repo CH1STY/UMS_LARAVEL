@@ -8,7 +8,7 @@ use App\Note;
 use Illuminate\Http\Request;
 use App\Teacher;
 use App\TeacherCourse;
-use Illuminate\Support\Facades\DB;
+use DB;
 
 class CourseController extends Controller
 {
@@ -21,39 +21,11 @@ class CourseController extends Controller
         $course = DB::table('courses','departments')
                     ->join('departments', 'departments.department_id','=','courses.department_id')
                     ->SELECT ('courses.course_id', 'departments.name as dname', 'courses.subject_code',
-                    'courses.name', 'courses.credits', 'courses.created_at');
+                    'courses.name', 'courses.credits', 'courses.created_at')
+                    ->paginate(10);
 
-        $sortType="";
-        if($request->has('sort'))
-        {
-            $sort = $request->get('sort');
-            if($sort=='name'|| $sort=='course_id' || $sort=='credits' || $sort=='dname' || $sort=='created_at')
-            {
-                if($request->has('sortType'))
-                {
-                    $sortType =  $request->get('sortType');
-                }
-                else
-                {
-                    $sortType = 'asc';
-                }
 
-                $course = $course->orderBy($sort,$sortType)
-                                ->paginate(10)
-                                ->appends(['sort'=> $sort, 'sortType'=>$sortType]);
-            }
-            else
-            {
-                $course = $course->paginate(10);
-            }
-
-        }
-        else
-        {
-            $course = $course->paginate(10);
-        }
-
-        return view('teacher.viewCourselist',compact('course','teacher','sortType'));
+        return view('teacher.viewCourselist',compact('course','teacher'));
     }
 
     public function searchCourse(Request $request)
@@ -70,7 +42,7 @@ class CourseController extends Controller
             $query = $request->get('query');
             if ($query != '') {
                 $data = DB::table('courses')
-                    ->Where('subject_code', 'like', '%' . $query . '%')
+                    ->where('subject_code', 'like', '%' . $query . '%')
                     ->orWhere('name', 'like', '%' . $query . '%')
                     ->orWhere('credits', 'like', '%' . $query . '%')
                     ->orderBy('course_id', 'asc')
@@ -86,10 +58,10 @@ class CourseController extends Controller
                     $output .= '
                                 <tr>
                                 <td>' . $row->course_id . '</td>
-                                <td>' . $row->course_name . '</td>
+                                <td>' . $row->name . '</td>
                                 <td>' . $row->credits . '</td>
                                 <td>' . $row->created_at . '</td>
-                                <td> <a href="#">
+                                <td> <a href="">
                                         <button class="btn btn-success">Details</button></a>
                                 </td>
                                 </tr>';

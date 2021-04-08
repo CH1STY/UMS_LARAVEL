@@ -31,16 +31,11 @@ Teacher Home
     <table class="table tableCustom" align="center">
         <thead>
             <tr>
-                @php
-                if($sortType=='asc') {$sortType='desc';}
-                else
-                {$sortType='asc';}
-                @endphp
-                <th><a href="{{route('teacher.viewCourselist',['sort'=>'course_id','sortType'=>$sortType,])}}">COURSE ID @if(request('sort')=='course_id') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
-                <th><a href="{{route('teacher.viewCourselist',['sort'=>'name','sortType'=>$sortType,])}}">COURSE NAME @if(request('sort')=='name') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
-                <th><a href="{{route('teacher.viewCourselist',['sort'=>'credits','sortType'=>$sortType,])}}">COURSE CREDIT @if(request('sort')=='credits') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
-                <th><a href="{{route('teacher.viewCourselist',['sort'=>'dname','sortType'=>$sortType,])}}">DEPARTMENT NAME @if(request('sort')=='dname') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
-                <th><a href="{{route('teacher.viewCourselist',['sort'=>'created_at','sortType'=>$sortType,])}}">CREATED AT @if(request('sort')=='created_at') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
+                <th>COURSE ID </th>
+                <th>COURSE NAME </th>
+                <th>COURSE CREDIT </th>
+                <th>DEPARTMENT NAME </th>
+                <th>CREATED AT </th>
                 <th>ACTION</th>
             </tr>
         </thead>
