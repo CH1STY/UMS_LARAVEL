@@ -104,6 +104,13 @@ Route::middleware(['sessionVerify'])->group(function () {
     //------Start of Accounts Part
 
     Route::get('account','AccountController@index')->name('account');
+    Route::get('studentManageBalance','AccountManageBalanceController@studentAccountBalance')->name('studentAccountBalance');
+    Route::get('teacherManageBalance','AccountManageBalanceController@teacherAccountBalance')->name('teacherAccountBalance');
+    Route::get('empolyeeManageBalance','AccountManageBalanceController@empolyeeAccountBalance')->name('empolyeeAccountBalance');
+    Route::get('empolyeeManageSalary','AccountManageBalanceController@salary')->name('empolyeeAccountSalary');
+    Route::post('insertSalary','AccountManageBalanceController@insertSalary')->name('insertSalary');
+
+
 
     //--------------------------------------------End Of Accounts Part
 
