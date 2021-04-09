@@ -26,6 +26,8 @@ View Notice
 
 @section('extraCss')
 <link rel="stylesheet" href="{{asset('css/admin/table.css')}}">
+<input type="hidden" id="fetch_url" value="{{route('admin.notice.fetch')}}">
+
 
 <script>
     function deleteF()
@@ -47,43 +49,41 @@ View Notice
     
 <h1 align="center">Notice List</h1>
 <h6 align="center" style="color:green">{{session('msg')}}</h6>
+<div style="display: inline">
+    <input style="width:95%; display:inline" type="text" name="search" id="search" class="form-control"  />
+    <i class="fas fa-search"></i>
+</div>
 <table class="table tableCustom">
     <thead>
         <tr>
             
-            @php 
-            if($sortType=='asc') {$sortType='desc';} 
-            else 
-            {$sortType='asc';}   
-            @endphp
-
-            <th><a href="{{route('admin.notice.view',['sort'=>'notice_id','sortType'=>$sortType,])}}">Notice Id @if(request('sort')=='notice_id') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
-            <th><a href="{{route('admin.notice.view',['sort'=>'details','sortType'=>$sortType,])}}">Details @if(request('sort')=='details') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
-            <th><a href="{{route('admin.notice.view',['sort'=>'admin_id','sortType'=>$sortType,])}}">Admin ID  @if(request('sort')=='admin_id') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
-            <th><a href="{{route('admin.notice.view',['sort'=>'created_at','sortType'=>$sortType,])}}">Date @if(request('sort')=='created_at') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
+          
+            <th class="sorting" data-sorting_type="asc"  data-column_name="notice_id" >Notice Id  <span id="notice_id_icon"> </th>
+            <th class="sorting" data-sorting_type="asc"  data-column_name="details" >Details  <span id="details_icon"> </th>
+            <th class="sorting" data-sorting_type="asc"  data-column_name="admin_id" >Admin ID  <span id="admin_id_icon"> </th> 
+            <th class="sorting" data-sorting_type="asc"  data-column_name="created_at" >Date <span id="created_at_icon"> </th>
             
            
             <th style="text-align: center" colspan="">Actions</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($noticeList as $ad)
-
-        <tr>
-            <td>{{$ad->notice_id}}</td>
-            <td>{{$ad->details}}</td>
-            <td>{{$ad->admin_id}}</td>
-            <td>{{$ad->created_at}}</td>
-            <td colspan="" align="center"><a onclick="return deleteF()" href="{{route('admin.notice.delete',['notice_id'=> $ad->id ,])}}"><button class="btn btn-danger">Delete</button></a></td>
-        </tr>
-            
-        @endforeach
+       @include('admin.notice.fetchNotices')
     </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="5"><div style="display:flex;justify-content:center;" >{{$noticeList->links()}}</div></td>
-        </tr>
-    </tfoot>
+    
+    <script>
+
+        function clear_icon()
+        {
+            $('#notice_id_icon').html('');
+            $('#details_icon').html('');
+            $('#admin_id_icon').html('');
+            $('#date_icon').html('');
+        }
+    </script>
+    
+    @include('admin.searchSortPagi')
+   
 </table>
    
     

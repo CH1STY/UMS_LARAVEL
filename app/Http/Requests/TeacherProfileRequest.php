@@ -26,10 +26,9 @@ class TeacherProfileRequest extends FormRequest
         return [
             'name' => 'min:1|max:30',
             'username' => 'unique:teachers',
-            'email' => 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix
-            |max:50|min:10',
+            'email' => 'email|max:50|min:10',
             'phone' => 'min:11|max:15',
-            "profile_picture" => 'mimes:jpg,png|max:5000',
+            'profile_pic' => 'mimes:jpg,png|max:5000',
         ];
     }
 }

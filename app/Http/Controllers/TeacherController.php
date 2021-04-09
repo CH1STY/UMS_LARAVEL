@@ -32,21 +32,6 @@ class TeacherController extends Controller
                     ->first();
         return view('teacher.profile',compact('teacher'));
     }
-    public function profilePicUp(ProPicRequest $request)
-    {
-        $teacher = Teacher::where('username',$request->session()->get('username'))
-                    ->first();
-        if($teacher->profile_pic) {
-            unlink($teacher->profile_pic);
-        }
-        $extension = $request->profile_picture->getClientOriginalExtension();
-        $fileName = date('U').'.'.$extension;
-        $destination = "images/teacher/";
-        $request->profile_picture->move($destination, $fileName);
-        $teacher->profile_pic = $destination.$fileName;
-        $teacher->save();
-        return Back();
-    }
 
     public function edit(Request $request)
     {
@@ -60,15 +45,16 @@ class TeacherController extends Controller
         $teacher = Teacher::where('username',$request->session()->get('username'))
                     ->first();
 
+
         if($request->profile_pic)
         {
             if($teacher->profile_pic) {
                 unlink($teacher->profile_pic);
             }
-            $extension = $request->profile_picture->getClientOriginalExtension();
+            $extension = $request->profile_pic->getClientOriginalExtension();
             $fileName = date('U').'.'.$extension;
             $destination = "images/teacher/";
-            $request->profile_picture->move($destination, $fileName);
+            $request->profile_pic->move($destination, $fileName);
             $teacher->profile_pic = $destination.$fileName;
 
         }
@@ -80,21 +66,11 @@ class TeacherController extends Controller
 
         $teacher->save();
         $request->session()->flash('msg','Profile Updated Sucessfully!');
-        return view('teacher.profile',compact('teacher'));
+        return redirect ()->route('teacher.profile');
 
     }
 
-    public function viewStudent(Request $request)
-    {
-        $teacher = Teacher::where('username',$request->session()->get('username'))
-                    ->first();
-        $teacherCourse = TeacherCourse::where('teacher_id',$teacher->teacher_id)
-                                       ->get();
 
-        $course = Course::all();
-        $student = Student::all();
-        return view('teacher.viewStudent',compact('teacher','course','teacherCourse'));
-    }
 
 
 }

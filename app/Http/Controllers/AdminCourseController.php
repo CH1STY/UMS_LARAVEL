@@ -141,26 +141,65 @@ class AdminCourseController extends Controller
         return Back();
     }
 
-    public function viewCourseAndSubject(Request $request)
+    public function viewCourses(Request $request)
     {
         $admin = Admin::where('username',$request->session()->get('username'))
         ->first();
 
-        $sortType ="";
 
-        $courseList = Course::join('subjects','courses.subject_code','=','subjects.subject_code')
+        $data = Course::join('subjects','courses.subject_code','=','subjects.subject_code')
                         ->join('departments','subjects.department_id','=','departments.department_id')
                         ->join('universities','departments.university_id','=','universities.university_id')
-                        ->select('courses.name as cname','departments.name as cdname','universities.name as cuname','subjects.name as csname','courses.semester as csemester')
-                        ->get();
+                        ->select('courses.id','courses.name as cname','departments.name as cdname','universities.name as cuname','subjects.name as csname','courses.semester as csemester')
+                        ->orderBy('cname','asc');
+        $data = $data->paginate(7);
+       return view('admin.course.ViewCourses',compact('admin','data'));
 
-        if($request->sortType)
+
+    }
+
+    public function fetchCourses(Request $request)
+    {   
+        if($request->ajax())
         {
-            $sortType = $request->sortType;
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+
+            $data = Course::join('subjects','courses.subject_code','=','subjects.subject_code')
+                        ->join('departments','subjects.department_id','=','departments.department_id')
+                        ->join('universities','departments.university_id','=','universities.university_id')
+                        ->select('courses.name as cname','departments.name as cdname','universities.name as cuname','subjects.name as csname','courses.semester as csemester');
+            if($query!="undefined")
+            {
+                
+                $data =    $data->orWhere('courses.name','like','%'.$query.'%')
+                                ->orWhere('universities.name','like','%'.$query.'%')
+                                ->orWhere('courses.semester','like','%'.$query.'%')
+                                ->orWhere('subjects.name','like','%'.$query.'%')
+                                ->orWhere('departments.name','like','%'.$query.'%');
+            }            
+            if($sort_by!='undefined' && $sort_type!='undefined')
+            {
+                $data = $data->orderBy($sort_by,$sort_type);
+            }
+            
+                        
+            $data= $data->paginate(7);
+                        
         }
+        
+        return view('admin.course.ViewCoursesFetch',compact('data'))->render();
+    }
 
-       return view('admin.course.CourseAndSubject',compact('admin','sortType','courseList'));
+    public function editCourse(Request $request,$id)
+    {
+        $admin = Admin::where('username',$request->session()->get('username'))
+                        ->first();
+        
+        $course = Course::where('id',$id)->first();
 
-
+        return view('admin.course.editCourse',compact('admin','course'));
     }
 }
