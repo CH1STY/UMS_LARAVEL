@@ -52,47 +52,39 @@ class AdminNoticeController extends Controller
     {
         $admin = Admin::where('username',$request->session()->get('username'))
         ->first();
-        $sortType="";
-        if($request->has('sort'))
-        {
-            $sort = $request->get('sort');
-            if($sort=='notice_id'|| $sort=='admin_id' || $sort=='details' || $sort=='created_at' )
-            {
+        
+        $data = Notice::select('id','notice_id','admin_id','created_at','details')
+                    ->paginate(7);
+        return view('admin.notice.viewNotice',compact('admin','data'));
+    }
 
-                if($request->has('sortType'))
-                {
-                    $sortType =  $request->get('sortType');
-                    if($sortType=='asc' || $sortType=='desc')
-                    {
-                        //pass
-                    }
-                    else
-                    {
-                        $noticeList = Notice::paginate(7);
-                        return view('admin.notice.view',compact('admin','noticeList','sortType'));
-                    }
-                } 
-                else
-                {
-                    $sortType = 'asc';
-                }
-                
-                $noticeList = Notice::orderBy($sort,$sortType)->paginate(7)->appends(['sort'=> $sort, 'sortType'=>$sortType]);
-                
-            }
-            else
-            {
-                
-                $noticeList = Notice::paginate(7);
-            }
-        }else
+    public function fetchNotices(Request $request)
+    {
+        $data = Notice::select('id','notice_id','admin_id','created_at','details');
+        $sort_by = $request->get('sortby');
+        $sort_type = $request->get('sorttype');
+        $query = $request->get('query');
+        $query = str_replace(" ", "%", $query);
+
+        
+       
+
+        if($query!="undefined")
         {
-            
-            
-            $noticeList = Notice::paginate(7);
+            $data =    $data->orWhere('notice_id','like','%'.$query.'%')
+                            ->orWhere('admin_id','like','%'.$query.'%')
+                            ->orWhere('created_at','like','%'.$query.'%')
+                            ->orWhere('details','like','%'.$query.'%');
+        }            
+        if($sort_by!='undefined' && $sort_type!='undefined')
+        {
+            $data = $data->orderBy($sort_by,$sort_type);
         }
+        
+                    
+        $data= $data->paginate(7);
 
-        return view('admin.notice.viewNotice',compact('admin','noticeList','sortType'));
+        return view('admin.notice.fetchNotices',compact('data'));
     }
 
     public function delete(Request $request, $notice_id)
