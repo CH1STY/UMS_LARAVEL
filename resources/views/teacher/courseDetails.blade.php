@@ -73,12 +73,12 @@ Teacher Home
         </table>
             <a href="{{route('teacher.studentlist',['id'=>$course->course_id])}}" align="center">
             <button class="btn btn-success" style="margin:5px">View Student list</button></a>
-            <a href="#" align="center">
+            <a href="{{route('teacher.noteUpload',['id'=>$course->course_id])}}" align="center">
             <button class="btn btn-success" style="margin:5px">Upload Notes</button></a>
-            <a href="#" align="center">
+            <a href="{{route('teacher.assignmentUpload',['id'=>$course->course_id])}}" align="center">
             <button class="btn btn-success" style="margin:5px">Assign Assignment</button></a>
-            <a href="#" align="center">
-            <button class="btn btn-success" style="margin:5px">Generate Report</button></a>
+            <a href="{{route('teacher.studentReport')}}" align="center">
+            <button class="btn btn-success" style="margin:5px">Generate Student Report</button></a>
         {{session('msg')}}
     </div>
 

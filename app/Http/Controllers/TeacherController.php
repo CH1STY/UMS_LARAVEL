@@ -18,7 +18,7 @@ class TeacherController extends Controller
         $teacher = Teacher::where('username',$request->session()->get('username'))
                     ->first();
         $teacherCourse = TeacherCourse::where('teacher_id',$teacher->teacher_id)
-                                       ->where('status','In progress')
+                                       ->where('status','active')
                                        ->get();
 
         $course = Course::all();
@@ -71,6 +71,30 @@ class TeacherController extends Controller
     }
 
 
+    public function resignRequest(Request $request)
+    {
+        $teacher = Teacher::where('username',$request->session()->get('username'))
+                    ->first();
+        return view('teacher.resignRequest',compact('teacher'));
+    }
+
+    public function resigning(Request $request)
+    {
+        $teacher = Teacher::where('username',$request->session()->get('username'))
+                    ->first();
+        $teacher->status = 'resigning';
+        $teacher->save();
+        return back();
+    }
+
+    public function deleteResigning(Request $request)
+    {
+        $teacher = Teacher::where('username',$request->session()->get('username'))
+                    ->first();
+        $teacher->status = 'active';
+        $teacher->save();
+        return back();
+    }
 
 
 }

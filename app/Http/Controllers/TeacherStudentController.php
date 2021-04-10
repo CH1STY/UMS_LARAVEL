@@ -1,15 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Course;
-use App\Http\Requests\TeacherProfileRequest;
-use App\Http\Requests\ProPicRequest;
+use App\Exports\StudentReportExport;
 use App\Student;
 use App\StudentCourse;
 use Illuminate\Http\Request;
 use App\Teacher;
 use App\TeacherCourse;
 use DB;
+use Excel;
 
 
 class TeacherStudentController extends Controller
@@ -59,9 +58,40 @@ class TeacherStudentController extends Controller
     {
         $list = StudentCourse::where('student_id',$id)->first();
         $req->session()->flash('delete','STUDENT ID '.$id.' DROPPED SUCESSFULLY');
-        $list->delete();
+        $list->status = "dropped";
         return Back();
     }
 
+    public function addstudentcourse(Request $request)
+    {
+        $teacher = Teacher::where('username',$request->session()->get('username'))
+                    ->first();
+        $teachercourse = TeacherCourse::where('teacher_id',$teacher->teacher_id)->first();
+        $student = StudentCourse::where('course_id',$teachercourse->course_id)
+                                        ->where('status','pending')
+                                        ->get();
+
+        return view('teacher.addstudentcourse',compact('teacher','student'));
+    }
+
+    public function addedstudentcourse(Request $request,$id)
+    {
+        $teacher = Teacher::where('username',$request->session()->get('username'))
+                    ->first();
+        $teachercourse = TeacherCourse::where('teacher_id',$teacher->teacher_id)->first();
+        $std = StudentCourse::where('course_id',$teachercourse->course_id)
+                                        ->where('status','pending')
+                                        ->where('student_id',$id)
+                                        ->first();
+
+        $std->status = 'active';
+        $std->save();
+        return back();
+    }
+
+    public function StudentReport(){
+        $name = time().'.xlsx';
+        return Excel::download(new StudentReportExport,$name);
+    }
 
 }

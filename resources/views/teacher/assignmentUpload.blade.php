@@ -24,7 +24,7 @@ Teacher Home
 
 @section('container')
 <div class="panel panel-primary">
-    <div class="panel-heading" align="center" style="padding:2%"><h2>Upload notes for {{$course->course_id}}</h2></div>
+    <div class="panel-heading" align="center" style="padding:2%"><h2>Upload Assignment for {{$course->course_id}}</h2></div>
     <div class="panel-body">
 
       @if ($message = Session::get('success'))
@@ -46,7 +46,7 @@ Teacher Home
           </div>
       @endif
 
-      <form action="{{ route('teacher.noteUpload.post',['id'=>$course->course_id]) }}" method="POST" enctype="multipart/form-data">
+      <form action="{{ route('teacher.assignmentUpload.post',['id'=>$course->course_id]) }}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="row">
 
@@ -64,16 +64,16 @@ Teacher Home
         {{session('delete')}}
       <table align="center" class="table table-condensed table-hover "  style="width: 70%">
         <thead class="thead-dark" align="center">
-            <th scope="col">NOTE ID</th>
-            <th scope="col">VIEW NOTE</th>
+            <th scope="col">ASSIGNMENT ID</th>
+            <th scope="col">ACTION</th>
         </thead>
         <tbody>
-            @foreach ($note as $nc)
+            @foreach ($assignment as $ac)
                 <tr align="center">
-                    <th scope="col">{{$nc->note_id}}</th>
+                    <th scope="col">{{$ac->assignment_id}}</th>
                     <th scope="col">
-                        <a href="{{route('teacher.notedownload',['id'=>$nc->note_id])}}"><button class="btn btn-info">DOWNLOAD</button></a>
-                        <a href="{{route('teacher.notedelete',['id'=>$nc->note_id])}}" onclick="return confirm('Are you sure?')">
+                        <a href="{{route('teacher.assignmentdownload',['id'=>$ac->assignment_id])}}"><button class="btn btn-info">DOWNLOAD</button></a>
+                        <a href="{{route('teacher.assignmentdelete',['id'=>$ac->assignment_id])}}" onclick="return confirm('Are you sure?')">
                             <button class="btn btn-primary">DELETE</button></th></a>
                 </tr>
             @endforeach

@@ -11,6 +11,8 @@
 |
 */
 
+
+
 Route::get('/', function () {
     return redirect('/login');
 });
@@ -98,8 +100,15 @@ Route::middleware(['sessionVerify'])->group(function () {
         Route::get('teacher/profile/edit','TeacherController@edit')->name('teacher.edit');
         Route::post('teacher/profile/edit','TeacherController@profileUpdate');
 
+        //Resign Request
+        Route::get('teacher/resignRequest','TeacherController@resignRequest')->name('teacher.resignRequest');
+        Route::get('teacher/resigning','TeacherController@resigning')->name('teacher.resigning');
+        Route::get('teacher/deleteResigning','TeacherController@deleteresigning')->name('teacher.deleteResigning');
+
         //Teacher Student
         Route::get('teacher/student','TeacherStudentController@viewStudent')->name('teacher.viewStudent');
+        Route::get('teacher/student/addcourse','TeacherStudentController@addstudentcourse')->name('teacher.addstudentcourse');
+        Route::get('teacher/student/{id}/addtocourse','TeacherStudentController@addedstudentcourse')->name('teacher.addedstudentcourse');
         Route::get('teacher/{id}/studentlist','TeacherStudentController@studentlist')->name('teacher.studentlist');
         Route::get('teacher/studentdetails/{id}','TeacherStudentController@studentdetails')->name('teacher.studentdetails');
         Route::get('teacher/student/drop/{id}','TeacherStudentController@studentdrop')->name('teacher.studentdrop');
@@ -112,15 +121,43 @@ Route::middleware(['sessionVerify'])->group(function () {
         Route::get('teacher/action', 'CourseController@action')->name('teacher.action');
 
         Route::get('teacher/mycourse','CourseController@teacherCourse')->name('teacher.viewMyCourselist');
-
         Route::get('teacher/course/details/{course_id}','CourseController@courseDetails')->name('teacher.courseDetails');
 
         //Teacher Note
         Route::get('teacher/notes','CourseController@noteCourse')->name('teacher.noteCourse');
         Route::get('teacher/notes/upload/{id}','CourseController@noteUpload')->name('teacher.noteUpload');
+        Route::post('teacher/notes/upload/{id}','CourseController@noteUploadPost')->name('teacher.noteUpload.post');
+        Route::get('teacher/notes/download/{id}','CourseController@notedownload')->name('teacher.notedownload');
+        Route::get('teacher/notes/delete/{id}','CourseController@notedelete')->name('teacher.notedelete');
+
+        //Teacher Assignment
+        Route::get('teacher/assignment','CourseController@assignmentCourse')->name('teacher.assignmentCourse');
+        Route::get('teacher/assignment/upload/{id}','CourseController@assignmentUpload')->name('teacher.assignmentUpload');
+        Route::post('teacher/assignment/upload/{id}','CourseController@assignmentUploadPost')->name('teacher.assignmentUpload.post');
+        Route::get('teacher/assignment/download/{id}','CourseController@assignmentdownload')->name('teacher.assignmentdownload');
+        Route::get('teacher/assignment/delete/{id}','CourseController@assignmentdelete')->name('teacher.assignmentdelete');
+
+        //Drop request
+        Route::get('teacher/student/dropRequest','CourseController@dropRequest')->name('teacher.dropRequest');
+        Route::get('teacher/student/dropping/{cid}/{sid}','CourseController@dropping')->name('teacher.dropping');
+        Route::get('teacher/student/droppingCancel/{cid}/{sid}','CourseController@droppingCancel')->name('teacher.droppingCancel');
 
         //Teacher Accounts
         Route::get('teacher/viewAccount','TeacherAccountController@viewAccount')->name('teacher.viewAccount');
+
+        //Teacher Notice
+        Route::get('teacher/notice/admin','TeacherNoticeController@noticeadmin')->name('teacher.noticeadmin');
+        Route::get('teacher/notice','TeacherNoticeController@noticeTeacher')->name('teacher.noticeTeacher');
+        Route::get('teacher/notice/course','TeacherNoticeController@noticeCourse')->name('teacher.noticeCourse');
+        Route::get('teacher/notice/upload/{id}','TeacherNoticeController@noticeUpload')->name('teacher.noticeUpload');
+        Route::post('teacher/notice/upload/{id}','TeacherNoticeController@uploadNotice')->name('teacher.uploadNotice');
+
+        Route::get('teacher/notice/delete/{id}','TeacherNoticeController@noticedelete')->name('teacher.noticedelete');
+        //Export
+        Route::get('teacher/DownloadStudentReport', 'TeacherStudentController@StudentReport')->name('teacher.studentReport');
+
+        //Print pdf
+        Route::get('teacher/Account/Print/{id}','TeacherAccountController@accountPrint')->name('teacher.accountPrint');
 
     });
 

@@ -45,7 +45,7 @@ Teacher Home
                 <td>{{$list->credits_completed}}</td>
                 <td>{{$list->status}}</td>
                 <td><a href="{{route('teacher.studentdetails',['id'=>$list->student_id])}}"><button class="btn btn-primary">Details</button></a>
-                    <a href="{{route('teacher.studentdrop',['id'=>$list->student_id])}}"><button class="btn btn-danger">Drop</button></a></td>
+                    <a href="{{route('teacher.studentdrop',['id'=>$list->student_id])}}" onclick="return confirm('Are you sure?')"><button class="btn btn-danger">Drop</button></a></td>
             </tr>
 
             @endforeach
