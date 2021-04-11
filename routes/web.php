@@ -90,6 +90,13 @@ Route::middleware(['sessionVerify'])->group(function () {
         Route::get('admin/course/view','AdminCourseController@viewCourses')->name('admin.course.view');
         Route::get('admin/course/fetch','AdminCourseController@fetchCourses')->name('admin.course.fetch');
         Route::get('admin/course/edit/{id}','AdminCourseController@editCourse')->name('admin.course.edit');
+        Route::post('admin/course/edit/{id}','AdminCourseController@updateCourse')->name('admin.course.edit');
+
+        Route::get('admin/subject/view','AdminCourseController@viewSubjects')->name('admin.subject.view');
+        Route::get('admin/subject/fetch','AdminCourseController@fetchSubjects')->name('admin.subject.fetch');
+        Route::get('admin/subject/edit/{id}','AdminCourseController@editSubject')->name('admin.subject.edit');
+        Route::post('admin/subject/edit/{id}','AdminCourseController@updateSubject')->name('admin.subject.edit');
+
 
     });
 

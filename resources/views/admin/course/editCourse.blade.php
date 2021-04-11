@@ -48,7 +48,62 @@ Course and Subjects
  <form action="" enctype="multipart/form-data" method="post">
      @csrf
      <table class="table formTable">
-       
+        <tr>
+            <td class="labelT">Course Name</td>
+            <td><input type="text" name="name" id="" value="{{$course->cname}}"></td>
+            <td class="errorText">  {{ $errors->first('name')}}</td>
+        </tr>
+        <tr>
+            <td class="labelT">Department Name</td>
+            <td colspan="2">{{$course->dname}}</td>
+        </tr>
+        <tr>
+            <td class="labelT">Subject Name</td>
+            <td>
+                <select name="subject_code" id="">
+                    <option value="">Please Select a Subject</option>
+                    @foreach ($subjects as $subject)
+                        <option value="{{$subject->subject_code}}" @if($subject->subject_code==$course->cscode) selected @endif >{{$subject->name}}</option>
+                        
+                    @endforeach
+                </select>
+            </td>
+            <td class="errorText">  {{ $errors->first('subject_code')}}</td>
+        </tr>
+        <tr>
+            <td class="labelT">Prerequisite</td>
+            <td>
+                <select name="prerequisite" id="">
+                    <option value="">Please Select a Prerequisite}</option>
+                    @foreach ($subjectAll as $subject)
+                        <option value="{{$subject->subject_code}}" @if($subject->subject_code==$course->prcode) selected @endif >{{$subject->name}}</option>
+                        
+                    @endforeach
+                </select>
+            </td>
+            <td class="errorText">  {{ $errors->first('prerequisite')}}</td>
+        </tr>
+        <tr>
+            <td class="labelT">Admin Name</td>
+            <td colspan="2">{{$course->adname}}</td>
+        </tr>
+        <tr>
+            <td class="labelT">Department</td>
+            <td colspan="2">{{$course->dname}}</td>
+        </tr>
+        <tr>
+            <td class="labelT">University</td>
+            <td colspan="2">{{$course->uname}}</td>
+        </tr>
+        <tr>
+            <td class="labelT">Credits</td>
+            <td><input type="number" name="credits" id="" value="{{$course->credits}}" max="5" min="1"></td>
+            <td class="errorText">  {{ $errors->first('credits')}}</td>
+        </tr>
+        <tr>
+            <td class="labelT">Semester</td>
+            <td colspan="2">{{$course->semester}}</td>
+        </tr>
            
     </table>
 
