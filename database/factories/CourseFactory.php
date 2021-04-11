@@ -13,7 +13,7 @@ $factory->define(Course::class, function (Faker $faker) {
         'course_id' => 'CI'.$faker->unique()->numberBetween(100,999),
         'name' => $faker->firstName,
         'credits' => $faker->numberBetween(1,3),
-        'semester' => $faker->randomElement(['Spring','Summer','Fall']).$faker->numberBetween(2000,2021),
+        'semester' => $faker->numberBetween(2000,2021).$faker->randomElement([' Spring',' Summer',' Fall']),
         'admin_id' => $faker->randomElement($admin_ids),
         'subject_code' => $faker->randomElement($subject_codes),
         'prerequisite' => $faker->randomElement($subject_codes),

@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
   <link rel="stylesheet" href="{{asset('css/admin/style.css')}}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   @yield('extraCss')
   <title>@yield('pageTitle')</title>
 </head>
@@ -64,7 +65,8 @@
       <ul>
         <li><a href="{{route('admin.subject.add')}}">Add Subject</a></li>
         <li><a href="{{route('admin.course.add')}}">Add Course</a></li>
-        <li><a href="{{route('admin.course.view')}}">View Courses and Subjects</a></li>
+        <li><a href="{{route('admin.course.view')}}">View Courses</a></li>
+        <li><a href="{{route('admin.subject.view')}}">View Subjects</a></li>
       </ul>
     </li>
     <li class="dropdownList"> <a href="">Notice <span>&rsaquo;</span></a>
@@ -77,7 +79,7 @@
     <li> <a href="">Nothing</a></li>
     <li> <a href="">ATP Project</a></li>
   
-    <li class="dropdownList"> <a href="">ATP PROJECT WITH SIDE MENU <span>&rsaquo;</span> </a>
+    <li class="dropdownList"> <a href="">ATP PROJECT <span>&rsaquo;</span> </a>
       <ul>
         <li> <a href="">D 1</a></li>
         <li> <a href="">D 2</a></li>

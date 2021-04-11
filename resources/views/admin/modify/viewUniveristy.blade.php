@@ -26,7 +26,7 @@ View Universities
 
 @section('extraCss')
 <link rel="stylesheet" href="{{asset('css/admin/table.css')}}">
-
+<input type="hidden" id="fetch_url" value="{{route('admin.fetch.university')}}">
 <script>
     function check(){
        if(confirm("Are You Sure? All The Information Related to this University Will Be Deleted?"))
@@ -47,46 +47,50 @@ View Universities
 
     <h1 align="center">University List</h1>
     <h6 align="center" style="color:green">{{session('msg')}}</h6>
+    <div style="display: inline">
+        <input style="width:95%; display:inline" type="text" name="search" id="search" class="form-control"  />
+        <i class="fas fa-search"></i>
+    </div>
     <table class="table tableCustom">
         <thead>
             <tr>
                 
-                @php 
-                if($sortType=='asc') {$sortType='desc';} 
-                else 
-                {$sortType='asc';}   
-                @endphp
 
-                <th><a href="{{route('admin.view.university',['sort'=>'name','sortType'=>$sortType,])}}">Name @if(request('sort')=='name') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
-                <th><a href="{{route('admin.view.university',['sort'=>'university_id','sortType'=>$sortType,])}}">Univeristy Id @if(request('sort')=='university_id') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
-                <th><a href="{{route('admin.view.university',['sort'=>'address','sortType'=>$sortType,])}}">Address @if(request('sort')=='address') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
-                <th><a href="{{route('admin.view.university',['sort'=>'admin_id','sortType'=>$sortType,])}}">Admin Id @if(request('sort')=='admin_id') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
-                <th><a href="{{route('admin.view.university',['sort'=>'updated_at','sortType'=>$sortType,])}}">Last Updated @if(request('sort')=='updated_at') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
+                <th class="sorting" data-sorting_type="asc"  data-column_name="name" >Name <span id="name_icon"></th>
+                <th class="sorting" data-sorting_type="asc"  data-column_name="university_id" >Univeristy Id <span id="university_id_icon"></th>
+                <th class="sorting" data-sorting_type="asc"  data-column_name="address" >Address <span id="address_icon"></th>
+                <th class="sorting" data-sorting_type="asc"  data-column_name="admin_id" >Admin Id <span id="admin_id_icon"></th>
+                <th class="sorting" data-sorting_type="asc"  data-column_name="updated_at" >Last Updated <span id="updated_at_icon"></th>
                 
-               
+                
                 <th style="text-align: center" colspan="2">Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($universityList as $ad)
-
-            <tr>
-                <td>{{$ad->name}}</td>
-                <td>{{$ad->university_id}}</td>
-                <td>{{$ad->address}}</td>
-                <td>{{$ad->admin_id}}</td>
-                <td>{{$ad->created_at}}</td>
-                <td><a href="{{route('admin.edit.university',['univ_id'=>$ad->id,])}}"><button class="btn btn-primary">Edit</button></a></td>
-                <td><a href="{{route('admin.details.university',['univ_id'=>$ad->id,])}}"><button class="btn btn-info">Details</button></a></td>
-            </tr>
-                
-            @endforeach
+            @include('admin.modify.fetchUniversity')
         </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="7"><div style="display:flex;justify-content:center;" >{{$universityList->links()}}</div></td>
-            </tr>
-        </tfoot>
+       
+               
+        
     </table>
+
+    <input type="hidden" name="hidden_page" id="hidden_page" value="1">
+    <input type="hidden" name="hidden_column_name" id="hidden_column_name" value="name">
+    <input type="hidden" name="hidden_sort_type" id="hidden_sort_type" value="asc">
+
+    <script>
+
+        function clear_icon()
+        {
+            $('#name_icon').html('');
+            $('#university_id_icon').html('');
+            $('#address_icon').html('');
+            $('#admin_id_icon').html('');
+            $('#updated_at_icon').html('');
+        }
+    </script>
+    
+    @include('admin.searchSortPagi')
+    
 
 @endsection 

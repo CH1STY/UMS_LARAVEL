@@ -18,7 +18,7 @@ class TeacherController extends Controller
         $teacher = Teacher::where('username',$request->session()->get('username'))
                     ->first();
         $teacherCourse = TeacherCourse::where('teacher_id',$teacher->teacher_id)
-                                       ->where('status','In progress')
+                                       ->where('status','active')
                                        ->get();
 
         $course = Course::all();
@@ -31,21 +31,6 @@ class TeacherController extends Controller
         $teacher = Teacher::where('username',$request->session()->get('username'))
                     ->first();
         return view('teacher.profile',compact('teacher'));
-    }
-    public function profilePicUp(ProPicRequest $request)
-    {
-        $teacher = Teacher::where('username',$request->session()->get('username'))
-                    ->first();
-        if($teacher->profile_pic) {
-            unlink($teacher->profile_pic);
-        }
-        $extension = $request->profile_picture->getClientOriginalExtension();
-        $fileName = date('U').'.'.$extension;
-        $destination = "images/teacher/";
-        $request->profile_picture->move($destination, $fileName);
-        $teacher->profile_pic = $destination.$fileName;
-        $teacher->save();
-        return Back();
     }
 
     public function edit(Request $request)
@@ -60,15 +45,16 @@ class TeacherController extends Controller
         $teacher = Teacher::where('username',$request->session()->get('username'))
                     ->first();
 
+
         if($request->profile_pic)
         {
             if($teacher->profile_pic) {
                 unlink($teacher->profile_pic);
             }
-            $extension = $request->profile_picture->getClientOriginalExtension();
+            $extension = $request->profile_pic->getClientOriginalExtension();
             $fileName = date('U').'.'.$extension;
             $destination = "images/teacher/";
-            $request->profile_picture->move($destination, $fileName);
+            $request->profile_pic->move($destination, $fileName);
             $teacher->profile_pic = $destination.$fileName;
 
         }
@@ -80,20 +66,34 @@ class TeacherController extends Controller
 
         $teacher->save();
         $request->session()->flash('msg','Profile Updated Sucessfully!');
-        return view('teacher.profile',compact('teacher'));
+        return redirect ()->route('teacher.profile');
 
     }
 
-    public function viewStudent(Request $request)
+
+    public function resignRequest(Request $request)
     {
         $teacher = Teacher::where('username',$request->session()->get('username'))
                     ->first();
-        $teacherCourse = TeacherCourse::where('teacher_id',$teacher->teacher_id)
-                                       ->get();
+        return view('teacher.resignRequest',compact('teacher'));
+    }
 
-        $course = Course::all();
-        $student = Student::all();
-        return view('teacher.viewStudent',compact('teacher','course','teacherCourse'));
+    public function resigning(Request $request)
+    {
+        $teacher = Teacher::where('username',$request->session()->get('username'))
+                    ->first();
+        $teacher->status = 'resigning';
+        $teacher->save();
+        return back();
+    }
+
+    public function deleteResigning(Request $request)
+    {
+        $teacher = Teacher::where('username',$request->session()->get('username'))
+                    ->first();
+        $teacher->status = 'active';
+        $teacher->save();
+        return back();
     }
 
 

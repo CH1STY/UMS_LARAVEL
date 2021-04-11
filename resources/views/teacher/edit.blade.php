@@ -50,7 +50,7 @@ Edit Profile
                     @endif" alt="" class="propic">
                     <div style="vertical-align: bottom;" >
 
-                            <input type="file" name="profile_picture" id="">
+                            <input type="file" name="profile_pic" id="">
                             {{--<button type="submit" class="btn btn-info">Upload</button>--}}
 
                     </div>

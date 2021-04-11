@@ -32,40 +32,35 @@ Teacher Home
         <thead>
             <tr>
                 @php
-                if($sortType=='asc') {$sortType='desc';}
+                if($order=='asc') {$order='desc';}
                 else
-                {$sortType='asc';}
+                {$order='asc';}
                 @endphp
 
-                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'course_id','sortType'=>$sortType,])}}">COURSE ID @if(request('sort')=='course_id') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
-                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'name','sortType'=>$sortType,])}}">COURSE NAME @if(request('sort')=='name') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
-                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'credits','sortType'=>$sortType,])}}">COURSE CREDIT @if(request('sort')=='credits') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
-                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'department_id','sortType'=>$sortType,])}}">DEPARTMENT ID @if(request('sort')=='department_id') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
-                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'created_at','sortType'=>$sortType,])}}">CREATED AT @if(request('sort')=='created_at') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
-                <th>STATUS</th>
+                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'course_id','order'=>$order,])}}">COURSE ID @if(request('sort')=='course_id') @if(request('order')=='asc') &uarr;  @else &darr; @endif  @endif</a></th>
+                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'name','order'=>$order,])}}">COURSE NAME @if(request('sort')=='name') @if(request('order')=='asc') &uarr;  @else &darr; @endif  @endif</a></th>
+                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'credits','order'=>$order,])}}">COURSE CREDIT @if(request('sort')=='credits') @if(request('order')=='asc') &uarr;  @else &darr; @endif  @endif</a></th>
+                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'dname','order'=>$order,])}}">DEPARTMENT NAME @if(request('sort')=='dname') @if(request('order')=='asc') &uarr;  @else &darr; @endif  @endif</a></th>
+                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'created_at','order'=>$order,])}}">CREATED AT @if(request('sort')=='created_at') @if(request('order')=='asc') &uarr;  @else &darr; @endif  @endif</a></th>
+                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'status','order'=>$order,])}}">STATUS @if(request('sort')=='status') @if(request('order')=='asc') &uarr;  @else  &darr; @endif  @endif</a></th>
                 <th>ACTION</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($course as $list)
-            @foreach( $teacherCourse as $tc)
             <tr>
-                @if ($list['course_id']==$tc['course_id'])
-                <td>{{$list['course_id']}}</td>
-                <td>{{$list['name']}}</td>
-                <td>{{$list['credits']}}</td>
-                <td>{{$list['department_id']}}</td>
-                <td>{{$list['created_at']}}</td>
-                @if($tc['status']=='Completed')
-                <td style="color:#D50000"><b>{{$tc['status']}}</b></td>
-                <td><button class="btn">Details</button></td>
+                <td>{{$list->course_id}}</td>
+                <td>{{$list->name}}</td>
+                <td>{{$list->credits}}</td>
+                <td>{{$list->dname}}</td>
+                <td>{{$list->created_at}}</td>
+                @if($list->status=='completed')
+                <td style="color:#D50000"><b>{{$list->status}}</b></td>
                 @else
-                <td style="color:green"><b>{{$tc['status']}}</b></td>
-                <td><button class="btn">Details</button></td>
+                <td style="color:green"><b>{{$list->status}}</b></td>
                 @endif
-                @endif
+                <td><a href="{{route('teacher.courseDetails',['course_id'=>$list->course_id,])}}"><button class="btn">Details</button></a></td>
             </tr>
-            @endforeach
             @endforeach
         </tbody>
     </table>

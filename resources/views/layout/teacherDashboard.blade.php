@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
   <link rel="stylesheet" href="{{asset('css/teacher/style.css')}}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   @yield('extraCss')
   <title>@yield('pageTitle')</title>
 </head>
@@ -56,20 +58,33 @@
     <li class="dropdownList"> <a href="">Students <span>&rsaquo;</span></a>
       <ul>
         <li><a href="{{route('teacher.viewStudent')}}">View Student List</a></li>
-        <li><a href="">Add Student</a></li>
+        <li><a href="{{route('teacher.addstudentcourse')}}">Add student into course</a></li>
       </ul>
     </li>
     <li class="dropdownList"> <a href="">Courses<span>&rsaquo;</span></a>
         <ul>
+          <li><a href="{{route('teacher.searchCourse')}}">Search Course</a></li>
           <li><a href="{{route('teacher.viewCourselist')}}">View Course List</a></li>
           <li><a href="{{route('teacher.viewMyCourselist')}}">My Courses</a></li>
         </ul>
+    </li>
+    <li> <a href="{{route('teacher.viewAccount')}}">Accounts</a></li>
+    <li> <a href="{{route('teacher.noteCourse')}}">Notes</a></li>
+    <li> <a href="{{route('teacher.assignmentCourse')}}">Assignments</a></li>
+    <li class="dropdownList"> <a href="">Notices<span>&rsaquo;</span></a>
+        <ul>
+          <li><a href="{{route('teacher.noticeadmin')}}">Admin notices</a></li>
+          <li><a href="{{route('teacher.noticeCourse')}}">Upload notices</a></li>
+          <li><a href="{{route('teacher.noticeTeacher')}}">My notices</a></li>
+        </ul>
+    </li>
+    <li class="dropdownList"> <a href="">Application<span>&rsaquo;</span></a>
+        <ul>
+          <li><a href="{{route('teacher.dropRequest')}}">Get drop request</a></li>
+          <li><a href="{{route('teacher.resignRequest')}}">Request to resign</a></li>
+        </ul>
       </li>
-    <li> <a href="">Accounts</a></li>
-    <li> <a href="">Notes</a></li>
-    <li> <a href="">Notices</a></li>
-    <li> <a href="">Application</a></li>
-    <li> <a href="">Library</a></li>
+    <li> <a href="https://openlibrary.org/">Library</a></li>
 
   </ul>
 </div>
