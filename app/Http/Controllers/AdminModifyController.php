@@ -22,49 +22,47 @@ class AdminModifyController extends Controller
         
         $admin = Admin::where('username',$request->session()->get('username'))
                     ->first();
-        //Sorting part
-        $sortType="";
-        if($request->has('sort'))
-        {
-            $sort = $request->get('sort');
-            if($sort=='name'|| $sort=='university_id' || $sort=='address' || $sort=='admin_id' || $sort=='updated_at')
-            {
-
-                if($request->has('sortType'))
-                {
-                    $sortType =  $request->get('sortType');
-                    if($sortType=='asc' || $sortType=='desc')
-                    {
-                        //pass
-                    }
-                    else
-                    {
-                        $universityList = University::paginate(7);
-                        return view('admin.modify.viewUniveristy',compact('admin','universityList','sortType'));
-                    }
-                } 
-                else
-                {
-                    $sortType = 'asc';
-                }
-                
-                $universityList = University::orderBy($sort,$sortType)->paginate(7)->appends(['sort'=> $sort, 'sortType'=>$sortType]);
-                
-            }
-            else
-            {
-                
-                $universityList = University::paginate(7);
-            }
-        }else
-        {
-            
-            $universityList = University::paginate(7);
-        }
+        
+        $data = University::select('id','name','address','university_id','admin_id','updated_at')
+                    ->orderBy('name','asc')
+                    ->paginate(7);
         //End Of Sorting
 
+       
+        return view('admin.modify.viewUniveristy',compact('admin','data'));
+    }
 
-        return view('admin.modify.viewUniveristy',compact('admin','universityList','sortType'));
+    public function fetchUniversity(Request $request)
+    {
+        if($request->ajax())
+        {
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+
+            
+            $data = University::select('id','name','address','university_id','admin_id','updated_at');
+
+            if($query!="undefined")
+            {
+                $data =    $data->orWhere('name','like','%'.$query.'%')
+                                ->orWhere('university_id','like','%'.$query.'%')
+                                ->orWhere('address','like','%'.$query.'%')
+                                ->orWhere('admin_id','like','%'.$query.'%')
+                                ->orWhere('updated_at','like','%'.$query.'%');
+            }            
+            if($sort_by!='undefined' && $sort_type!='undefined')
+            {
+                $data = $data->orderBy($sort_by,$sort_type);
+            }
+            
+                        
+            $data= $data->paginate(7);
+                        
+        }
+        
+        return view('admin.modify.fetchUniversity',compact('data'))->render();
     }
 
     public function editUniversity(Request $request, $univ_id)
@@ -157,49 +155,48 @@ class AdminModifyController extends Controller
         
         $admin = Admin::where('username',$request->session()->get('username'))
                     ->first();
-        //Sorting part
-        $sortType="";
-        if($request->has('sort'))
-        {
-            $sort = $request->get('sort');
-            if($sort=='name'|| $sort=='admin_id' || $sort=='email' || $sort=='phone' || $sort=='created_at')
-            {
+        
+        $data = Admin::select('id','name','admin_id','email','phone','created_at')
+                            ->orderBy('name','asc')
+                            ->paginate(7);
+       
 
-                if($request->has('sortType'))
-                {
-                    $sortType =  $request->get('sortType');
-                    if($sortType=='asc' || $sortType=='desc')
-                    {
-                        //pass
-                    }
-                    else
-                    {
-                        $adminList = Admin::paginate(7);
-                        return view('admin.modify.admin',compact('admin','adminList','sortType'));
-                    }
-                } 
-                else
-                {
-                    $sortType = 'asc';
-                }
-                
-                $adminList = Admin::orderBy($sort,$sortType)->paginate(7)->appends(['sort'=> $sort, 'sortType'=>$sortType]);
-                
-            }
-            else
-            {
-                
-                $adminList = Admin::paginate(7);
-            }
-        }else
+
+        return view('admin.modify.viewAdmin',compact('admin','data'));
+    }
+
+    public function fetchAdmin(Request $request)
+    {
+        if($request->ajax())
         {
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+
             
-            $adminList = Admin::paginate(7);
+            $data = Admin::select('id','name','admin_id','email','phone','created_at');
+
+            if($query!="undefined")
+            {
+                $data =    $data->orWhere('name','like','%'.$query.'%')
+                                ->orWhere('admin_id','like','%'.$query.'%')
+                                ->orWhere('email','like','%'.$query.'%')
+                                ->orWhere('phone','like','%'.$query.'%')
+                                ->orWhere('created_at','like','%'.$query.'%');
+            }            
+            if($sort_by!='undefined' && $sort_type!='undefined')
+            {
+                $data = $data->orderBy($sort_by,$sort_type);
+            }
+            
+                        
+            $data= $data->paginate(7);
+                        
         }
-        //End Of Sorting
+        
+        return view('admin.modify.fetchAdmin',compact('data'))->render();
 
-
-        return view('admin.modify.viewAdmin',compact('admin','adminList','sortType'));
     }
 
 
@@ -232,49 +229,46 @@ class AdminModifyController extends Controller
         
         $admin = Admin::where('username',$request->session()->get('username'))
                     ->first();
-        //Sorting part
-        $sortType="";
-        if($request->has('sort'))
-        {
-            $sort = $request->get('sort');
-            if($sort=='name'|| $sort=='admin_id' || $sort=='email' || $sort=='phone' || $sort=='updated_at' || $sort=='university_id'|$sort=='status')
-            {
+        
+        $data = Account::select('id','name','email','phone','status','university_id','admin_id','updated_at')
+                        ->paginate(7);
 
-                if($request->has('sortType'))
-                {
-                    $sortType =  $request->get('sortType');
-                    if($sortType=='asc' || $sortType=='desc')
-                    {
-                        //pass
-                    }
-                    else
-                    {
-                        $accountList = Account::paginate(7);
-                        return view('admin.modify.viewAccount',compact('admin','accountList','sortType'));
-                    }
-                } 
-                else
-                {
-                    $sortType = 'asc';
-                }
-                
-                $accountList = Account::orderBy($sort,$sortType)->paginate(7)->appends(['sort'=> $sort, 'sortType'=>$sortType]);
-                
-            }
-            else
-            {
-                
-                $accountList = Account::paginate(7);
-            }
-        }else
+        return view('admin.modify.viewAccount',compact('admin','data'));
+    }
+
+    public function fetchAccount(Request $request)
+    {
+        if($request->ajax())
         {
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+
             
-            $accountList = Account::paginate(7);
+            $data = Account::select('id','name','email','phone','status','university_id','admin_id','updated_at');
+
+            if($query!="undefined")
+            {
+                $data =    $data->orWhere('name','like','%'.$query.'%')
+                                ->orWhere('university_id','like','%'.$query.'%')
+                                ->orWhere('phone','like','%'.$query.'%')
+                                ->orWhere('status','like','%'.$query.'%')
+                                ->orWhere('email','like','%'.$query.'%')
+                                ->orWhere('admin_id','like','%'.$query.'%')
+                                ->orWhere('updated_at','like','%'.$query.'%');
+            }            
+            if($sort_by!='undefined' && $sort_type!='undefined')
+            {
+                $data = $data->orderBy($sort_by,$sort_type);
+            }
+            
+                        
+            $data= $data->paginate(7);
+                        
         }
-        //End Of Sorting
-
-
-        return view('admin.modify.viewAccount',compact('admin','accountList','sortType'));
+        
+        return view('admin.modify.fetchAccount',compact('data'))->render();
     }
     
     public function editAccount(Request $request, $ad_id)
@@ -357,49 +351,50 @@ class AdminModifyController extends Controller
         
         $admin = Admin::where('username',$request->session()->get('username'))
                     ->first();
-        //Sorting part
-        $sortType="";
-        if($request->has('sort'))
-        {
-            $sort = $request->get('sort');
-            if($sort=='name'|| $sort=='admin_id' || $sort=='email' || $sort=='phone' || $sort=='updated_at' || $sort=='university_id'|$sort=='status')
-            {
-
-                if($request->has('sortType'))
-                {
-                    $sortType =  $request->get('sortType');
-                    if($sortType=='asc' || $sortType=='desc')
-                    {
-                        //pass
-                    }
-                    else
-                    {
-                        $teacherList = Teacher::paginate(7);
-                        return view('admin.modify.viewTeacher',compact('admin','teacherList','sortType'));
-                    }
-                } 
-                else
-                {
-                    $sortType = 'asc';
-                }
-                
-                $teacherList = Teacher::orderBy($sort,$sortType)->paginate(7)->appends(['sort'=> $sort, 'sortType'=>$sortType]);
-                
-            }
-            else
-            {
-                
-                $teacherList = Teacher::paginate(7);
-            }
-        }else
-        {
+       
             
-            $teacherList = Teacher::paginate(7);
-        }
+        $data = Teacher::select('id','name','email','phone','status','university_id','admin_id','updated_at')
+                               ->paginate(7);
+        
         //End Of Sorting
 
 
-        return view('admin.modify.viewTeacher',compact('admin','teacherList','sortType'));
+        return view('admin.modify.viewTeacher',compact('admin','data'));
+    }
+
+    public function fetchTeacher(Request $request)
+    {
+        if($request->ajax())
+        {
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+            $query = $request->get('query');
+            $query = str_replace(" ", "%", $query);
+
+            
+            $data = Teacher::select('id','name','email','phone','status','university_id','admin_id','updated_at');
+
+            if($query!="undefined")
+            {
+                $data =    $data->orWhere('name','like','%'.$query.'%')
+                                ->orWhere('university_id','like','%'.$query.'%')
+                                ->orWhere('phone','like','%'.$query.'%')
+                                ->orWhere('status','like','%'.$query.'%')
+                                ->orWhere('email','like','%'.$query.'%')
+                                ->orWhere('admin_id','like','%'.$query.'%')
+                                ->orWhere('updated_at','like','%'.$query.'%');
+            }            
+            if($sort_by!='undefined' && $sort_type!='undefined')
+            {
+                $data = $data->orderBy($sort_by,$sort_type);
+            }
+            
+                        
+            $data= $data->paginate(7);
+                        
+        }
+        
+        return view('admin.modify.fetchTeacher',compact('data'))->render();
     }
 
     public function editTeacher(Request $request, $ad_id)
@@ -482,49 +477,45 @@ class AdminModifyController extends Controller
         
         $admin = Admin::where('username',$request->session()->get('username'))
                     ->first();
-        //Sorting part
-        $sortType="";
-        if($request->has('sort'))
-        {
-            $sort = $request->get('sort');
-            if($sort=='name'|| $sort=='admin_id' || $sort=='email' || $sort=='phone' || $sort=='updated_at' || $sort=='university_id'|$sort=='status')
-            {
-
-                if($request->has('sortType'))
-                {
-                    $sortType =  $request->get('sortType');
-                    if($sortType=='asc' || $sortType=='desc')
-                    {
-                        //pass
-                    }
-                    else
-                    {
-                        $studentList = Student::paginate(7);
-                        return view('admin.modify.viewTeacher',compact('admin','studentList','sortType'));
-                    }
-                } 
-                else
-                {
-                    $sortType = 'asc';
-                }
-                
-                $studentList = Student::orderBy($sort,$sortType)->paginate(7)->appends(['sort'=> $sort, 'sortType'=>$sortType]);
-                
-            }
-            else
-            {
-                
-                $studentList = Student::paginate(7);
-            }
-        }else
-        {
+        
             
-            $studentList = Student::paginate(7);
+        $data = Student::select('id','student_id','name','email','phone','status','university_id','admin_id','updated_at')
+                        ->paginate(7);
+       
+
+
+        return view('admin.modify.viewStudent',compact('admin','data'));
+    }
+
+    public function fetchStudent(Request $request)
+    {
+        $data = Student::select('id','student_id','name','email','phone','status','university_id','admin_id','updated_at');
+        
+        $sort_by = $request->get('sortby');
+        $sort_type = $request->get('sorttype');
+        $query = $request->get('query');
+        $query = str_replace(" ", "%", $query);
+        
+        if($query!="undefined")
+            {
+                $data =    $data->orWhere('name','like','%'.$query.'%')
+                                ->orWhere('university_id','like','%'.$query.'%')
+                                ->orWhere('admin_id','like','%'.$query.'%')
+                                ->orWhere('phone','like','%'.$query.'%')
+                                ->orWhere('status','like','%'.$query.'%')
+                                ->orWhere('email','like','%'.$query.'%')
+                                ->orWhere('admin_id','like','%'.$query.'%')
+                                ->orWhere('updated_at','like','%'.$query.'%');
+            }            
+        if($sort_by!='undefined' && $sort_type!='undefined')
+        {
+            $data = $data->orderBy($sort_by,$sort_type);
         }
-        //End Of Sorting
 
+        $data = $data->paginate(7);
 
-        return view('admin.modify.viewStudent',compact('admin','studentList','sortType'));
+        return view('admin.modify.fetchStudent',compact('admin','data'));
+
     }
 
     public function editStudent(Request $request, $s_id)
