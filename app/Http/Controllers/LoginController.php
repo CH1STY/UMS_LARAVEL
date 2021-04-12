@@ -7,6 +7,7 @@ use App\Admin;
 use App\Teacher;
 use App\Account;
 use App\Student;
+use App\RegistrationControl;
 
 class LoginController extends Controller
 {
@@ -37,8 +38,17 @@ class LoginController extends Controller
         }
         else
         {
-            
-            return view('login.index');
+            $isRegistration = RegistrationControl::find(1);
+            if($isRegistration->status=='active')
+            {
+                $isRegistration = true;
+            }
+            else
+            {
+                $isRegistration = false;
+
+            }
+            return view('login.index',compact('isRegistration'));
         }
 
         

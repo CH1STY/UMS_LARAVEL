@@ -69,26 +69,26 @@
         <li><a href="{{route('admin.subject.view')}}">View Subjects</a></li>
       </ul>
     </li>
+    <li class="dropdownList"> <a href="">Student Management <span>&rsaquo;</span></a>
+      <ul>
+        <li><a href="{{route('admin.student.course.add')}}">Add To Course</a></li>
+        <li><a href="{{route('admin.student.course.remove')}}">Drop From Course</a></li>
+      </ul>
+    </li>
     <li class="dropdownList"> <a href="">Notice <span>&rsaquo;</span></a>
       <ul>
         <li><a href="{{route('admin.notice.add')}}">Add Notice</a></li>
         <li><a href="{{route('admin.notice.view')}}">View All Notices</a></li>
       </ul>
     </li>
-    <li> <a href="">Registration</a></li>
-    <li> <a href="">Nothing</a></li>
-    <li> <a href="">ATP Project</a></li>
-  
-    <li class="dropdownList"> <a href="">ATP PROJECT <span>&rsaquo;</span> </a>
+    <li> <a href="{{route('admin.registration')}}">Registration Controller</a></li>
+    <li class="dropdownList"> <a href="">Generate Report <span>&rsaquo;</span></a>
       <ul>
-        <li> <a href="">D 1</a></li>
-        <li> <a href="">D 2</a></li>
-        <li> <a href="">D 3</a></li>
-
+        <li><a href="{{route('admin.report.university')}}">University Wise</a></li>
       </ul>
-    
-    
     </li>
+    <li> <a href="{{route('admin.resign')}}">Resign Application</a></li>
+  
 
     
   </ul>

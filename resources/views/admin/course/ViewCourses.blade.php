@@ -2,7 +2,7 @@
 
 @section('pageTitle')
 
-Course and Subjects
+View Courses
     
 @endsection
 

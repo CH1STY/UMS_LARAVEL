@@ -64,9 +64,11 @@
 						</button>
 					</div>
 					<br>
+					@if($isRegistration)
 					<div class="container-login100-form-btn">
 						<a href="{{route('registration')}}" class="login100-form-btn">Registration</a>
 					</div>
+					@endif
 
 
 				</form>
