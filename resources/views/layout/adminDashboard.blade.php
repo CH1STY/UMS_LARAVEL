@@ -38,7 +38,7 @@
         </div>
       </div>
        <li><a href="{{route('admin.profile')}}"><i class="fas fa-user"></i> Profile</a></li>
-       <li><a href=""><i class="fas fa-cog"></i>Setting</a></li>
+       <!--<li><a href=""><i class="fas fa-cog"></i>Setting</a></li>-->
        <li><a href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
     </ul>
 

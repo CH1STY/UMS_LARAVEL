@@ -35,6 +35,7 @@ class AdminCourseController extends Controller
 
         $newSubId = Subject::orderBy('subject_code','desc')
                     ->first();
+        
         if($newSubId)
         {
             $newSubId = intval(substr($newSubId->subject_code,2,4));
@@ -149,7 +150,7 @@ class AdminCourseController extends Controller
 
         $data = Course::join('subjects','courses.subject_code','=','subjects.subject_code')
                         ->join('departments','subjects.department_id','=','departments.department_id')
-                        ->join('universities','departments.university_id','=','universities.university_id')
+                        ->join('universities','subjects.university_id','=','universities.university_id')
                         ->select('courses.id','courses.name as cname','departments.name as cdname','universities.name as cuname','subjects.name as csname','courses.semester as csemester')
                         ->orderBy('cname','asc');
         $data = $data->paginate(7);
@@ -160,8 +161,7 @@ class AdminCourseController extends Controller
 
     public function fetchCourses(Request $request)
     {   
-        if($request->ajax())
-        {
+        
             $sort_by = $request->get('sortby');
             $sort_type = $request->get('sorttype');
             $query = $request->get('query');
@@ -169,8 +169,8 @@ class AdminCourseController extends Controller
 
             $data = Course::join('subjects','courses.subject_code','=','subjects.subject_code')
                         ->join('departments','subjects.department_id','=','departments.department_id')
-                        ->join('universities','departments.university_id','=','universities.university_id')
-                        ->select('courses.name as cname','departments.name as cdname','universities.name as cuname','subjects.name as csname','courses.semester as csemester');
+                        ->join('universities','subjects.university_id','=','universities.university_id')
+                        ->select('courses.id','courses.name as cname','departments.name as cdname','universities.name as cuname','subjects.name as csname','courses.semester as csemester');
             if($query!="undefined")
             {
                 
@@ -188,9 +188,9 @@ class AdminCourseController extends Controller
                         
             $data= $data->paginate(7);
                         
-        }
+       
         
-        return view('admin.course.ViewCoursesFetch',compact('data'))->render();
+       return view('admin.course.ViewCoursesFetch',compact('data'))->render();
     }
 
     public function editCourse(Request $request,$id)
@@ -299,7 +299,7 @@ class AdminCourseController extends Controller
 
 
         $data = Subject::join('departments','subjects.department_id','=','departments.department_id')
-                        ->join('universities','departments.university_id','=','universities.university_id')
+                        ->join('universities','subjects.university_id','=','universities.university_id')
                         ->select("subjects.id",'departments.name as cdname','universities.name as cuname','subjects.name as csname')
                         ->orderBy('cdname','asc');
         $data = $data->paginate(7);
@@ -317,7 +317,7 @@ class AdminCourseController extends Controller
             $query = str_replace(" ", "%", $query);
 
             $data = Subject::join('departments','subjects.department_id','=','departments.department_id')
-                        ->join('universities','departments.university_id','=','universities.university_id')
+                        ->join('universities','subjects.university_id','=','universities.university_id')
                         ->select('subjects.id','departments.name as cdname','universities.name as cuname','subjects.name as csname');
             if($query!="undefined")
             {
