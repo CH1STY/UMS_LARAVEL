@@ -31,35 +31,35 @@ Teacher Home
 
     <tr>
         <th scope="col">USER'S NAME</th>
-        <th scope="col">{{$account->name}}</th>
+        <th scope="col">{{$teacher->name}}</th>
     </tr>
     <tr>
         <th scope="col">USERNAME</th>
-        <th scope="col">{{$account->username}}</th>
-    </tr>
-    <tr>
-        <th scope="col">ACCOUNT ID</th>
-        <th scope="col">{{$account->account_id}}</th>
+        <th scope="col">{{$teacher->username}}</th>
     </tr>
     <tr>
         <th scope="col">EMAIL</th>
-        <th scope="col">{{$account->email}}</th>
+        <th scope="col">{{$teacher->email}}</th>
     </tr>
     <tr>
         <th scope="col">PHONE</th>
-        <th scope="col">{{$account->phone}}</th>
+        <th scope="col">{{$teacher->phone}}</th>
     </tr>
     <tr>
         <th scope="col">SALARY</th>
-        <th scope="col">{{$account->salary}}</th>
+        <th scope="col">{{$teacher->salary}}</th>
+    </tr>
+    <tr>
+        <th scope="col">BALANCE</th>
+        <th scope="col">{{$teacher->balance}}</th>
     </tr>
     <tr>
         <th scope="col">USER'S STATUS</th>
-        <th scope="col">{{$account->status}}</th>
+        <th scope="col">{{$teacher->status}}</th>
     </tr>
     <tr>
         <th scope="col">BIRTHDATE</th>
-        <th scope="col">{{$account->birthdate}}</th>
+        <th scope="col">{{$teacher->birthdate}}</th>
     </tr>
     <tr>
         <td></td>
