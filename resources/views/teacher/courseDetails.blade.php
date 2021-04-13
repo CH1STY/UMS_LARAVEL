@@ -78,7 +78,10 @@ Teacher Home
             <a href="{{route('teacher.assignmentUpload',['id'=>$course->course_id])}}" align="center">
             <button class="btn btn-success" style="margin:5px">Assign Assignment</button></a>
             <a href="{{route('teacher.studentReport')}}" align="center">
-            <button class="btn btn-success" style="margin:5px">Generate Student Report</button></a>
+            <button class="btn btn-success" style="margin:5px">Download Student Report</button></a><br>
+            <a href="{{route('teacher.attendence')}}" align="center">
+            <button class="btn btn-success" style="margin:5px">Student Attendence</button></a>
+
         {{session('msg')}}
     </div>
 

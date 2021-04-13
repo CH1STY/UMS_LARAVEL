@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Exports\StudentReportExport;
+use App\Exports\StudentAttendenceExport;
+use App\Imports\StudentAttendenceImport;
 use App\Student;
 use App\StudentCourse;
 use Illuminate\Http\Request;
@@ -71,7 +73,7 @@ class TeacherStudentController extends Controller
                                         ->where('status','pending')
                                         ->get();
 
-        return view('teacher.addstudentcourse',compact('teacher','student'));
+       return view('teacher.addstudentcourse',compact('teacher','student'));
     }
 
     public function addedstudentcourse(Request $request,$id)
@@ -90,8 +92,25 @@ class TeacherStudentController extends Controller
     }
 
     public function StudentReport(){
-        $name = time().'.xlsx';
-        return Excel::download(new StudentReportExport,$name);
+        $report = time().'.xlsx';
+        return Excel::download(new StudentReportExport,$report);
+    }
+
+    public function attendence(Request $request)
+    {
+        $teacher = Teacher::where('username',$request->session()->get('username'))
+                    ->first();
+        return view('teacher.attendence',compact('teacher'));
+    }
+    public function StudentAttendence(){
+        $attendence = time().'.xlsx';
+        return Excel::download(new StudentAttendenceExport,$attendence);
+    }
+
+    public function importAttendence(Request $request)
+    {
+        Excel::import(new StudentAttendenceImport, $request->file);
+        return back()->with('success', 'Attendence uploaded successfully!');
     }
 
 }

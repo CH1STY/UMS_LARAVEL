@@ -47,7 +47,7 @@ Teacher Home
                 <td>{{$list->credits}}</td>
                 <td>{{$list->dname}}</td>
                 <td>{{$list->created_at}}</td>
-                <td><a href="#"><button class="btn">Details</button></td>
+                <td><a href="{{route('teacher.courseDetails',['course_id'=>$list->course_id,])}}"><button class="btn">Details</button></td>
             </tr>
 
             @endforeach

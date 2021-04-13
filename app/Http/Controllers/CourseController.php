@@ -8,6 +8,7 @@ use App\Note;
 use Illuminate\Http\Request;
 use App\Teacher;
 use App\Assignment;
+use App\AssignmentCollection;
 use App\StudentCourse;
 use App\TeacherCourse;
 use DB;
@@ -286,6 +287,16 @@ class CourseController extends Controller
         $assignment = Assignment::where('assignment_id',$id)->first();
         return response()->download($assignment->details);
     }
+
+    public function assignmentcollect(Request $request, $id)
+    {
+        $teacher = Teacher::where('username',$request->session()->get('username'))
+                            ->first();
+        $assignment = AssignmentCollection::where('assignment_id',$id)->get();
+        //print_r($assignment);
+        return view('teacher.assignmentcollect',compact('assignment','teacher'));
+    }
+
      public function assignmentdelete(Request $req,$id)
     {
         $list = Assignment::where('assignment_id',$id)->first();

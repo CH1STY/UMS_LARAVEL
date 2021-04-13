@@ -24,7 +24,7 @@ Teacher Home
 
 @section('container')
 <div class="panel panel-primary">
-    <div class="panel-heading" align="center" style="padding:2%"><h2>Upload Assignment for {{$course->course_id}}</h2></div>
+    <div class="panel-heading" align="center" style="padding:2%"><h2>Collect Assignment </h2></div>
     <div class="panel-body">
 
       @if ($message = Session::get('success'))
@@ -35,46 +35,23 @@ Teacher Home
 
       @endif
 
-      @if (count($errors) > 0)
-          <div class="alert alert-danger">
-              <strong>Whoops!</strong> There were some problems with your input.
-              <ul>
-                  @foreach ($errors->all() as $error)
-                      <li>{{ $error }}</li>
-                  @endforeach
-              </ul>
-          </div>
-      @endif
 
-      <form action="{{ route('teacher.assignmentUpload.post',['id'=>$course->course_id]) }}" method="POST" enctype="multipart/form-data">
-          @csrf
-          <div class="row">
-
-              <div class="col-md-6">
-                  <input type="file" name="file" class="form-control">
-              </div>
-
-              <div class="col-md-6">
-                  <button type="submit" class="btn btn-success">Upload</button>
-              </div>
-
-          </div>
-      </form>
       <div align="center" style="padding:2%">
         {{session('delete')}}
       <table align="center" class="table table-condensed table-hover "  style="width: 70%">
         <thead class="thead-dark" align="center">
             <th scope="col">ASSIGNMENT ID</th>
+            <th scope="col">STUDENT ID</th>
             <th scope="col">ACTION</th>
         </thead>
         <tbody>
             @foreach ($assignment as $ac)
                 <tr align="center">
                     <th scope="col">{{$ac->assignment_id}}</th>
+                    <th scope="col">{{$ac->student_id}}</th>
                     <th scope="col">
-                        <a href="{{route('teacher.assignmentdownload',['id'=>$ac->assignment_id])}}"><button class="btn btn-info">DOWNLOAD</button></a>
-                        <a href="{{route('teacher.assignmentcollect',['id'=>$ac->assignment_id])}}"><button class="btn btn-primary active">Collect</button></a>
-                        <a href="{{route('teacher.assignmentdelete',['id'=>$ac->assignment_id])}}" onclick="return confirm('Are you sure?')">
+                        <a href="#"><button class="btn btn-info">DOWNLOAD</button></a>
+                        <a href="#" onclick="return confirm('Are you sure?')">
                             <button class="btn btn-danger">DELETE</button></th></a>
                 </tr>
             @endforeach

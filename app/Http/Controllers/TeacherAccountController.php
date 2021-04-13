@@ -18,9 +18,8 @@ class TeacherAccountController extends Controller
         $teacher = Teacher::where('username', $request->session()->get('username'))
             ->first();
 
-        $account = Account::where('username', $teacher->username)->first();
 
-        return view('teacher.viewAccount', compact('teacher', 'account'));
+        return view('teacher.viewAccount', compact('teacher'));
     }
 
     public function accountPrint(Request $request,$id)
@@ -34,41 +33,41 @@ class TeacherAccountController extends Controller
     function convert($id)
     {
         $teacher = Teacher::where('teacher_id', $id)->first();
-        $account = Account::where('username', $teacher->username)->first();
+        //$account = Account::where('username', $teacher->username)->first();
 
         $output = '<h2><b>'.$teacher->username.'</b></h2>
                     <table>
                         <tr>
                             <th> NAME</th>
-                            <th>'.$account->name.'</th>
+                            <th>'.$teacher->name.'</th>
                         </tr>
                         <tr>
                             <th>USERNAME</th>
-                            <th>'.$account->username.'</th>
+                            <th>'.$teacher->username.'</th>
                         </tr>
                         <tr>
                             <th>ACCOUNT ID</th>
-                            <th>'.$account->account_id.'</th>
+                            <th>'.$teacher->account_id.'</th>
                         </tr>
                         <tr>
                             <th>EMAIL</th>
-                            <th>'.$account->email.'</th>
+                            <th>'.$teacher->email.'</th>
                         </tr>
                         <tr>
                             <th>PHONE</th>
-                            <th>'.$account->phone.'</th>
+                            <th>'.$teacher->phone.'</th>
                         </tr>
                         <tr>
                             <th>SALARY</th>
-                            <th>'.$account->salary.'</th>
+                            <th>'.$teacher->salary.'</th>
                         </tr>
                         <tr>
                             <th> STATUS</th>
-                            <th>'.$account->status.'</th>
+                            <th>'.$teacher->status.'</th>
                         </tr>
                         <tr>
                             <th>BIRTHDATE</th>
-                            <th>'.$account->birthdate.'</th>
+                            <th>'.$teacher->birthdate.'</th>
                         </tr>
                 </table>';
         return $output;

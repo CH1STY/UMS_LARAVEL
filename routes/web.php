@@ -96,22 +96,22 @@ Route::middleware(['sessionVerify'])->group(function () {
         Route::get('admin/subject/fetch','AdminCourseController@fetchSubjects')->name('admin.subject.fetch');
         Route::get('admin/subject/edit/{id}','AdminCourseController@editSubject')->name('admin.subject.edit');
         Route::post('admin/subject/edit/{id}','AdminCourseController@updateSubject')->name('admin.subject.edit');
-        
+
         Route::get('admin/registrationControl','AdminRegistrationController@index')->name('admin.registration');
         Route::get('admin/registrationControl/update','AdminRegistrationController@update')->name('admin.registration.update');
-        
+
         Route::get('admin/Student_Course_Control/Add','AdminStudentCourseController@addView')->name('admin.student.course.add');
         Route::post('admin/Student_Course_Control/Add','AdminStudentCourseController@addCourseVerify')->name('admin.student.course.add');
         Route::get('admin/Student_Course_Control/Fetch','AdminStudentCourseController@addViewFetch')->name('admin.student.course.fetch');
         Route::get('admin/Student_Course_Control/Remove','AdminStudentCourseController@removeView')->name('admin.student.course.remove');
         Route::post('admin/Student_Course_Control/Remove','AdminStudentCourseController@removeVerify')->name('admin.student.course.remove');
         Route::get('admin/Student_Course_Control/FetchDrop','AdminStudentCourseController@dropViewFetch')->name('admin.student.course.fetch.drop');
-        
+
         Route::get('admin/ResignManagement','AdminResignController@index')->name('admin.resign');
         Route::get('admin/ResignManagement/fetch','AdminResignController@fetch')->name('admin.resign.fetch');
         Route::get('admin/Resign/accept/{empid}','AdminResignController@accept')->name('admin.resign.accept');
         Route::get('admin/Resign/reject/{empid}','AdminResignController@reject')->name('admin.resign.reject');
-        
+
         Route::get('admin/genReport/University','AdminReportGen@universityView')->name('admin.report.university');
         Route::post('admin/genReport/University','AdminReportGen@downloadUnivReport')->name('admin.report.university');
 
@@ -168,7 +168,9 @@ Route::middleware(['sessionVerify'])->group(function () {
         Route::get('teacher/assignment/upload/{id}','CourseController@assignmentUpload')->name('teacher.assignmentUpload');
         Route::post('teacher/assignment/upload/{id}','CourseController@assignmentUploadPost')->name('teacher.assignmentUpload.post');
         Route::get('teacher/assignment/download/{id}','CourseController@assignmentdownload')->name('teacher.assignmentdownload');
+        Route::get('teacher/assignment/collect/{id}','CourseController@assignmentcollect')->name('teacher.assignmentcollect');
         Route::get('teacher/assignment/delete/{id}','CourseController@assignmentdelete')->name('teacher.assignmentdelete');
+
 
         //Drop request
         Route::get('teacher/student/dropRequest','CourseController@dropRequest')->name('teacher.dropRequest');
@@ -188,6 +190,11 @@ Route::middleware(['sessionVerify'])->group(function () {
         Route::get('teacher/notice/delete/{id}','TeacherNoticeController@noticedelete')->name('teacher.noticedelete');
         //Export
         Route::get('teacher/DownloadStudentReport', 'TeacherStudentController@StudentReport')->name('teacher.studentReport');
+
+        //Student Attendence Export Import
+        Route::get('teacher/attendence', 'TeacherStudentController@attendence')->name('teacher.attendence');
+        Route::post('teacher/attendence', 'TeacherStudentController@importAttendence')->name('teacher.attendence.post');
+        Route::get('teacher/StudentAttendence', 'TeacherStudentController@StudentAttendence')->name('teacher.studentAttendence');
 
         //Print pdf
         Route::get('teacher/Account/Print/{id}','TeacherAccountController@accountPrint')->name('teacher.accountPrint');
