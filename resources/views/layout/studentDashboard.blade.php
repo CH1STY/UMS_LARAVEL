@@ -35,7 +35,7 @@
           <a align="center" style="text-align:center;color:rgb(83, 83, 201)" href="">Show All</a>
         </div>
       </div>
-       <li><a href=""><i class="fas fa-user"></i> Profile</a></li>
+       <li><a href="{{route('student.profile')}}"><i class="fas fa-user"></i> Profile</a></li>
        <li><a href=""><i class="fas fa-cog"></i>Setting</a></li>
        <li><a href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
     </ul>
@@ -51,33 +51,15 @@
     <p class="username">@yield('username')</p>
   </div>
   <ul>
-    <li class="dropdownList"> <a href="">Student <span>&rsaquo;</span></a>
+    <li class="dropdownList"> <a href="">View Courses <span>&rsaquo;</span></a>
       <ul>
-        <li><a href="">Open Admin</a></li>
-        <li><a href="">Change Admin</a></li>
+        <li><a href="{{route('student.view.viewCourse')}}">View All Courses</a></li>
+        <li><a href="{{route('student.view.viewCompletedCourse')}}">View Completed Courses</a></li>
+        <li><a href="{{route('student.view.viewCourseGrade')}}">View Courses With Marks</a></li>
+        <li><a href="{{route('student.view.viewDropedCourse')}}">View Droped Courses</a></li>
       </ul>
     </li>
-    <li> <a href="">Registration</a></li>
-    <li class="dropdownList"> <a href="">Something <span>&rsaquo;</span></a>
-      <ul>
-        <li><a href="">Open Nothing</a></li>
-        <li><a href="">Change NOthing</a></li>
-      </ul>
-    </li>
-    <li> <a href="">Nothing</a></li>
-    <li> <a href="">ATP Project</a></li>
-  
-    <li class="dropdownList"> <a href="">ATP PROJECT WITH SIDE MENU <span>&rsaquo;</span> </a>
-      <ul>
-        <li> <a href="">D 1</a></li>
-        <li> <a href="">D 2</a></li>
-        <li> <a href="">D 3</a></li>
-
-      </ul>
-    
-    
-    </li>
-
+    <li> <a href="{{route('apply.course')}}">Apply For Course</a></li>
     
   </ul>
 </nav>

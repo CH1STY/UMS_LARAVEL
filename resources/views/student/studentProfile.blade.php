@@ -79,7 +79,7 @@ Student Details
             </tr>
             <tr>
                 <td class="labelT">Department:</td>
-                <td style="font-weight: 700;">{{$std->name}}</td>
+                <td style="font-weight: 700;">{{$std}}</td>
             </tr>
             <tr>
                 <td class="labelT">Birth Date:</td>
