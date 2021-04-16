@@ -23,5 +23,5 @@ Student Home
 @endsection
 
 @section('container')
-    <h1>This is the Main Body</h1>
+    <h1></h1>
 @endsection

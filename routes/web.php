@@ -25,6 +25,7 @@ Route::get('logout', 'LogoutController@logout')->name('logout');
 Route::get('check','Check@index');
 
 Route::get('/registration','RegistrationController@index')->name('registration');
+Route::post('/registration','RegistrationController@registrationVerify');
 
 Route::middleware(['sessionVerify'])->group(function () {
     //------Start of Admin Part
@@ -210,8 +211,23 @@ Route::middleware(['sessionVerify'])->group(function () {
     //--------------------------------------------End Of Accounts Part
 
     //------Start of Student Part
+    Route::middleware(['studentVerify'])->group(function () {
+        
+        Route::get('student','StudentController@index')->name('student');
 
-    Route::get('student','StudentController@index')->name('student');
+        Route::get('student/profile','StudentController@profile')->name('student.profile');
+        Route::get('student/profile/edit','StudentController@edit')->name('student.edit');
+        Route::post('student/profile/edit','StudentController@profileUpdate');
+
+        Route::get('student/view/courseList','StudentViewController@viewCourse')->name('student.view.viewCourse');
+        Route::get('student/view/courseGradeList','StudentViewController@viewCourseGrade')->name('student.view.viewCourseGrade');
+        Route::get('student/view/courseCompleteList','StudentViewController@viewCompletedCourse')->name('student.view.viewCompletedCourse');
+        Route::get('student/view/courseDropedList','StudentViewController@viewDropedCourse')->name('student.view.viewDropedCourse');
+
+        Route::get('apply/course','StudentController@applyCourse')->name('apply.course');
+        Route::post('apply/course','StudentController@applyCourseVerify');
+
+    });
 
     //--------------------------------------------End Of Student Part
 

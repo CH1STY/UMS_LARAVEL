@@ -83,6 +83,7 @@ class LoginController extends Controller
         }
         else if($user = Student::where('username',$request->username)
         ->where('password',$request->pass)
+        ->where('status','active')
         ->first())
         {
             $request->session()->put('username',$user->username);

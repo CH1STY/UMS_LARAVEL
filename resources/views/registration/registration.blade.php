@@ -1,136 +1,98 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>Login</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/loginutil.css">
-	<link rel="stylesheet" type="text/css" href="css/login.css">
-<!--===============================================================================================-->
-</head>
-<body>
+@extends('layout.registrationDashboard')
 
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100 p-t-40 p-b-20">
-				<form method="post" class="login100-form validate-form">
-                    @csrf
-					<span class="login100-form-title p-b-30">
-						<span style="color:#A1A5A6;text-transform: uppercase;">
+@section('pageTitle')
 
-                            Welcome to<br>UMS
-                        </span>
-					</span>
-					<span class="login100-form-avatar">
-						<img src="images/avatar-01.jpg" alt="AVATAR">
-					</span>
+Student Registration
+    
+@endsection
+
+@section('container')
 
 
-                    <p class="errorMsg">{{session('msg')}}</p>
+<h1 align="center">Student Registration Page</h1>
+<p class="successMsg">{{session('msg')}} </p>
+ <form action="" method="post">
+     @csrf
+     <table class="table formTable">
+         <tr>
+             <td class="labelT">Name:</td>
+             <td><input class="inputF" type="text" name="name" id="" value="{{old('name')}}"></td>
+             <td class="errorText">  {{ $errors->first('name')}}</td>
+         </tr>
+         <tr>
+             <td class="labelT">Username:</td>
+             <td><input class="inputF" type="text" name="username" id="" value="{{old('username')}}"></td>
+             <td class="errorText"> {{ $errors->first('username')}}</td>
+         </tr>
+         <tr>
+             <td class="labelT">Phone:</td>
+             <td><input class="inputF" type="text" name="phone" id="" value="{{old('phone')}}"></td>
+             <td class="errorText"> {{ $errors->first('phone')}} </td>
+         </tr>
+         <tr>
+             <td class="labelT">Email:</td>
+             <td><input class="inputF" type="email" name="email" id="" value="{{old('email')}}"></td>
+             <td class="errorText"> {{ $errors->first('email')}} </td>
+         </tr>
+         <tr>
+             <td class="labelT">Password:</td>
+             <td><input class="inputF" type="password" name="password" id=""></td>
+             <td class="errorText"> {{ $errors->first('password')}} </td>
+         </tr>
+         <tr>
+             <td class="labelT">Confirm Password:</td>
+             <td><input class="inputF" type="password" name="password_confirmation" id=""></td>
+             <td class="errorText">{{ $errors->first('password')}}</td>
+         </tr>
+         <tr>
+             <td class="labelT">Address:</td>
+             <td><input class="inputF" type="text" name="address" id="" value="{{old('address')}}" ></td>
+             <td class="errorText">{{ $errors->first('address')}}</td>
+         </tr>
+         <tr>
+             <td class="labelT">Date Of Birth:</td>
+             <td><input class="inputF" type="date" name="birthdate" id="" value="{{old('birthdate')}}" ></td>
+             <td class="errorText">{{ $errors->first('birthdate')}}</td>
+         </tr>
+         <tr>
+             <td class="labelT">Date Of Admission:</td>
+             <td><input class="inputF" type="date" name="admission_date" id="" value="{{old('admission_date')}}" ></td>
+             <td class="errorText">{{ $errors->first('admission_date')}}</td>
+         </tr>
+         <tr>
+             <td class="labelT">University:</td>
+             <td>
+                <select class="form-select"  name="university_id" id="">
+                    <option value="0" selected>Select an University</option>
+                    @foreach ($universityList as $univ)
+                    <option value="{{$univ->university_id}}" @if(old('university_id')==$univ->university_id) selected @endif >{{$univ->name}}</option>  
+                    @endforeach
+                </select>
+            
+            </td>
+             <td class="errorText">{{ $errors->first('university_id')}}</td>
+         </tr>
+         <tr>
+             <td class="labelT">Department:</td>
+             <td>
+                <select class="form-select"  name="department_id" id="">
+                    <option value="0" selected>Select an Department</option>
+                    @foreach ($departmentList as $dept)
+                    <option value="{{$dept->department_id}}" @if(old('department_id')==$dept->department_id) selected @endif >{{$dept->name}}</option>  
+                    @endforeach
+                </select>
+            
+            </td>
+             <td class="errorText">{{ $errors->first('department_id')}}</td>
+         </tr>
 
+    
+     </table>
+	 <div class="buttonDiv btnMargin">
+        <button class="btn btn-primary" type="submit">Register</button>
+    	</div>
 
-					<div class="wrap-input100 validate-input m-t-30 m-b-35" data-validate = "Enter name">
-						<input class="input100" type="text" name="name">
-						<span class="focus-input100" data-placeholder="Name"></span>
-					</div>
-
-                    <div class="wrap-input100 validate-input m-t-30 m-b-35" data-validate = "Enter username">
-						<input class="input100" type="text" name="username">
-						<span class="focus-input100" data-placeholder="Username"></span>
-					</div>
-
-                    <div class="wrap-input100 validate-input m-t-30 m-b-35" data-validate = "Enter phone">
-						<input class="input100" type="text" name="phone">
-						<span class="focus-input100" data-placeholder="Phone No"></span>
-					</div>
-
-                    <div class="wrap-input100 validate-input m-t-30 m-b-35" data-validate = "Enter email">
-						<input class="input100" type="text" name="email">
-						<span class="focus-input100" data-placeholder="Email"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
-						<input class="input100" type="password" name="password">
-						<span class="focus-input100" data-placeholder="Password"></span>
-					</div>
-
-                    <div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
-						<input class="input100" type="password" name="password_confirmation">
-						<span class="focus-input100" data-placeholder="Confirm Password"></span>
-					</div>
-
-                    <div class="wrap-input100 validate-input m-b-50" data-validate="Enter address">
-						<input class="input100" type="password" name="address">
-						<span class="focus-input100" data-placeholder="Address"></span>
-					</div>
-
-                    <div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
-                        <tr>
-                        <td>DOB<td>
-						<td><input class="input100" type="date" name="pass"></td>
-						<span class="focus-input100" data-placeholder=""></span>
-                        </tr>
-					</div>
-
-                    <div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
-						<input class="input100" type="date" name="pass">
-						<span class="focus-input100" data-placeholder="Password"></span>
-					</div>
-
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Login
-						</button>
-					</div>
-					<br>
-					<div class="container-login100-form-btn">
-						<a href="{{route('registration')}}" class="login100-form-btn">Registration</a>
-					</div>
-
-
-				</form>
-			</div>
-		</div>
-	</div>
-
-
-	<div id="dropDownSelect1"></div>
-
-<!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/daterangepicker/moment.min.js"></script>
-	<script src="vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-	<script src="js/login.js"></script>
-
-</body>
-</html>
+ </form>
+ <br>
+        <a href="{{route('login')}}"><button class="btn btn-dark">Go Back</button></a>
+@endsection 
