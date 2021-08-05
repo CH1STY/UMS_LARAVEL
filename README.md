@@ -47,17 +47,17 @@
 ### Resign Management Page
 
 
-<img src="PicLaravel/ResignManagementPage.jpg." alt="" srcset="">
+<img src="PicLaravel/ResignManagementPage.jpg" alt="" srcset="">
 <hr>
 ### Report Generation Page
 
 
-<img src="PicLaravel/ReportGenerationPage.jpg." alt="" srcset="">
+<img src="PicLaravel/ReportGenerationPage.jpg" alt="" srcset="">
 <hr>
 ### Sample Report in PDF
 
 
-<img src="PicLaravel/GeneratedReportSample.jpg." alt="" srcset="">
+<img src="PicLaravel/GeneratedReportSample.jpg" alt="" srcset="">
 <hr>
 
 
